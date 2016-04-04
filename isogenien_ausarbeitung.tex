@@ -1,4 +1,4 @@
-\documentclass[english, german, parskip=half]{scrartcl}
+\documentclass[english, german]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{babel}
@@ -8,16 +8,16 @@
 
 \usepackage[backend=biber]{biblatex}
 \bibliography{isogenien_literatur.bib}
-\usepackage{makeidx}
-\makeindex
 
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{dsfont}
 
+\usepackage{enumitem}
 
 % DEFINITIONS
-\newtheorem{Satz}{Satz}
+\newtheorem{Satz}{Satz}[section]
 \newtheorem{Theorem}[Satz]{Theorem}
 \newtheorem{Proposition}[Satz]{Proposition}
 \newtheorem{Lemma}[Satz]{Lemma}
@@ -26,6 +26,12 @@
 \theoremstyle{remark}
 \newtheorem{Bemerkung}[Satz]{Bemerkung}
 
+\newcommand*{\K}{\ensuremath{K}}
+\newcommand*{\algK}{\ensuremath{\overline K}}
+\renewcommand*{\P}{\ensuremath{\mathds{P}}}
+\newcommand*{\longto}{\longrightarrow}
+\newcommand*{\Xn}{\underline{X}}
+\DeclareMathOperator{\ord}{ord}
 
 % TITEL
 \titlehead{Seminar Elliptische Kurven \\
@@ -39,16 +45,130 @@
 \maketitle
 \tableofcontents
 
-\section{Motivation}
+\section{Vorwort}
+
+\subsection{Nomenklatur}
+\begin{description}[labelwidth=1.5cm, font=\normalfont, itemsep=0pt]
+  \item[$\K$] Körper
+  \item[$\algK$] algebraischer Abschluss des Körpers $K$
+  \item[${\K[\Xn]}$] $\K[X_0,\dotsc,X_n]$
+  \item[$\P^n$] projektiver Raum der Dimension $n$
+  \item[$V(I)$] projektive Varietät erzeugt vom homogenen Ideal $I$
+  \item[$I(V)$] homogenes Ideal $I$, das die projektive Varietät $V$ erzeugt
+  \item[$V/K$] projektive Varietät definiert über $\K$ (d.\,h. $I(V)$
+    ist erzeugt von Polynomen in $\K(X)$
+  \item[$P\in V$] Punkt der projektiven Varietät $V$ oder 
+    das Maximalideal 
+    \begin{gather*}
+      M_P\coloneqq\left\{f\in\algK[V]\;\middle\vert\;f(P)=0\right\}
+      \subset \algK[V]
+    \end{gather*}
+  \item[{$\algK[V]$}] affiner Koordinatenring der projektiven Varietät
+    $V$ ($\algK[V]\coloneqq \algK[\Xn]/I(V)$)
+  \item[{$\algK(V)$}] Quotientenkörper von $\algK[V]$
+  \item[$C$] projektive Kurve
+  \item[$\ord_P(f)$] Ordnung von $f\in\algK(C)$ bzgl. der diskreten
+    Bewertung auf $\algK[C]_P$
+\end{description}
 
 \section{Einführung}
-\begin{Definition}[Rationale Abbildung]
-  Eine \emph{rationale Abbildung}\index{rationale Abbildung} 
-  ist eine
+\begin{Definition}[Morphismus projektiver Varietäten]
+  Für projektive Varietäten $V_1\subset\P^m$, $V_2\subset\P^n$ heißt
+  $\phi\colon V_1\to V_2$ eine \emph{rationale Abbildung},
+  falls $\phi$ in der Form
+  \begin{align*}
+    \phi = [f_0,\dotsc, f_n]\colon V_1 &\longto V_2\\
+    P &\longmapsto \left[f_0(P), \dotsc, f_n(P)\right] 
+        \qquad \text{mit } f_i\in\algK(V_1)
+  \end{align*}
+  geschrieben werden kann, 
+  wobei für jeden Punkt $P\in V_1$, 
+  in dem alle $f_i$ definiert sind, % f_i in P auswertbar
+  $(f_0(P),\dotsc,f_n(P))\neq0$. % Wohldefiniertheit
+  
+  Solch ein $\phi$ heißt \emph{definiert über $\K$},%
+  falls $f_i\in\K(V_1)$. Beachte hierbei die Invarianz
+  bzgl. Multiplikation mit Einheiten $\lambda$, denn
+  $[f_0,\dotsc,f_n]=[\lambda f_0,\dotsc,\lambda f_n]\in\P^n$.
 
+  Eine rationale Abbildung $\phi$ heißt \emph{regulär in $P\in V_1$},
+  falls es ein $g\in\algK(V)$ gibt, sodass
+  alle $gf_i$ in $P$ definiert sind 
+  und $(gf_0(P),\dotsc,gf_n(P))\neq0$.
+  Beachte hierbei, 
+  dass für ein in $P$ definiertes $g\in\algK(V)$ mit $g(P)\neq0$ gilt
+  $[f_0,\dotsc,f_n]=[gf_0,\dotsc, gf_n]\in\P^n$.
+  
+  Ein \emph{Morphismus von projektiven Varietäten} ist eine rationale
+  Abbildung $\phi\colon V_1\to V_2$, die in allen $P\in V_1$ regulär
+  ist.
 \end{Definition}
 
-%\printindex
+\begin{Lemma}\label{ratabbglattekurven}
+  Sei $C\subset\P^2$ eine Kurve und $V\subset\P^n$ eine projektive
+  Varietät. 
+  Eine rationale Abbildung $\phi=[f_0,\dotsc, f_n]\colon C\to V$ ist
+  regulär in allen regulären Punkten von $C$.
+  Insbesondere sind rationale Abbildungen von glatten Kurven
+  Morphismen.
+  \begin{proof}[Beweisskizze]
+    Für einen regulären Punkt $P\in C$ und einen Erzeuger
+    $t\in\algK(C)$ von $M_P$ gilt mit 
+    $r\coloneqq\min_{0\leq i\leq n}\{\ord_Pf_i\}$,
+    dass $[t^{-r}f_0,\dotsc,t^{-r}f_n]$ regulär in $P$ ist.
+    (Verwende die Tatsache, dass $g\in C$ regulär in $P$ ist
+    genau dann, wenn $\ord_P(g)\geq0$.)
+  \end{proof}
+\end{Lemma}
+
+\begin{Lemma}\label{morphismensurj}
+  Ein Morphismus von Kurven ist entweder konstant oder surjektiv.
+  \begin{proof}
+    ??
+  \end{proof}
+\end{Lemma}
+
+\begin{Bemerkung}[Kategorie der glatten Kurven]
+  Wir erhalten die \emph{Kategorie der glatten Kurven}:
+  \begin{description}
+  \item[Objekte] glatte Kurven
+  \item[Morphismen] surjektive Morphismen (nach Lemma
+    \ref{ratabbglattekurven} und \ref{morphismensurj} also
+    nicht-konstante, rationale Abbildungen)
+  \end{description}
+\end{Bemerkung}
+
+\begin{Bemerkung}[Kategorienäquivalenz]
+  Eine rationale Abbildung $\phi\colon C_1\to C_2$ auf Kurven, die auf
+  $\K$ definiert sind,
+  induziert eine injektive Abbildungen auf den Funktionenkörpern
+  \begin{align*}
+    \phi^* \colon \K(C_2) &\longto \K(C_1)\\
+    f &\longmapsto f\circ \phi
+  \end{align*}
+  Dies liefert eine Kategorienantiäquivalenz zwischen der Kategorie der
+  glatten Kurven und der Kategorie der Körpererweiterungen $\K'$ über $\K$
+  mit Transzendenzgrad 1 und $\K'\cap\algK=\K$:
+  \begin{align*}
+    C/K &\Longrightarrow \K(C)\\
+    \phi\colon C_1\to C_2 &\Longrightarrow \phi^*\colon\K(C_2)\to\K(C_1)
+  \end{align*}
+%% Körpererweiterungszeugs: siehe S.24–25
+\end{Bemerkung}
+
+
+% ramification index, Prop.2.6a) (S. 28)
+% Divisorengruppe/Punktegruppe, Translationsabbildung
+
+
+\section{Definition, Basic Properties}
+\section{Multiplication by m map}
+\section{m-Torsions-Untergrupppe}
+\section{Isogenien sind Homomorphismen}
+\section{Galois-Theorie elliptischer Funktionenkörper}
+\section{Eindeutige Faktorisierung}
+\section{Modulorechnung von Elliptischen Kurven}
+
 \nocite{*}
 \printbibliography
 \end{document}
