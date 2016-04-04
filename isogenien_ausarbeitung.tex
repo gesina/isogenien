@@ -1,0 +1,54 @@
+\documentclass[english, german, parskip=half]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{csquotes}
+
+\usepackage{lmodern}
+
+\usepackage[backend=biber]{biblatex}
+\bibliography{isogenien_literatur.bib}
+\usepackage{makeidx}
+\makeindex
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+
+% DEFINITIONS
+\newtheorem{Satz}{Satz}
+\newtheorem{Theorem}[Satz]{Theorem}
+\newtheorem{Proposition}[Satz]{Proposition}
+\newtheorem{Lemma}[Satz]{Lemma}
+\theoremstyle{definition}
+\newtheorem{Definition}[Satz]{Definition}
+\theoremstyle{remark}
+\newtheorem{Bemerkung}[Satz]{Bemerkung}
+
+
+% TITEL
+\titlehead{Seminar Elliptische Kurven \\
+  von Prof. Kerz,
+  SS2016, Universität Regensburg}
+\subject{Vortragsausarbeitung}
+\title{Isogenien}
+\author{Gesina Schwalbe}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Motivation}
+
+\section{Einführung}
+\begin{Definition}[Rationale Abbildung]
+  Eine \emph{rationale Abbildung}\index{rationale Abbildung} 
+  ist eine
+
+\end{Definition}
+
+%\printindex
+\nocite{*}
+\printbibliography
+\end{document}
