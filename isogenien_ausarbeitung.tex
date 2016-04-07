@@ -85,15 +85,18 @@
     Bewertung auf $\algK[C]_P$
 \end{description}
 
+\subsection{Motivation}
+Im Folgenden werden wir eine bestimmte
+
 \section{Wiederholung}
 \subsection{Morphismen von Kurven}
 Im folgenden ist mit Kurve immer eine projektive Varietät der
 Dimension 1 gemeint und mit Elliptische Kurve eine Kurve $E$ vom
-Geschlecht 1 zusmammen mit einem fixen Punkt $O\in E$.
+Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
 
 \begin{Definition}[Definiertheit]
-  Sei $C$ eine Kurve und $\algK[C]_P$ die Lokalisierung ihres affinen
-  Koordinatenrings nach dem Maximalideal $M_P$.
+  Sei $C$ eine Kurve, $P\in C$ und $\algK[C]_P$ die Lokalisierung
+  ihres affinen Koordinatenrings nach dem Maximalideal $M_P$.
   Wir bezeichnen mit
   \begin{align*}
     \ord_P\colon \algK[C]_P &\longto \N_0 \cup \{\infty\} \\
@@ -103,7 +106,7 @@ Geschlecht 1 zusmammen mit einem fixen Punkt $O\in E$.
   Erweiterung
   \begin{align*}
     \ord_P\colon \algK(C) &\longto \Z \cup \{\infty\} \\
-    \frac{f}{g} &\mapsto \ord_P(f) - \ord_P(g)
+    \frac{f}{g} &\longmapsto \ord_P(f) - \ord_P(g)
   \end{align*}
   die diskrete Bewertung auf dem Quotientenkörper $\algK(C)$.
 
@@ -315,10 +318,22 @@ identifizieren.
     P&\longmapsto P+Q             
     &&&P&\longmapsto -P
   \end{align*}
+  \begin{proof}
+    \cite[siehe][Theorem 3.6]{silverman}
+  \end{proof}
 \end{Satz}
 
+%---
 
 \section{Definition, Basic Properties}
+\begin{Definition}[Isogenie]
+  Ein Morphismus $\phi\colon E_1\to E_2$ von Elliptischen Kurven wird
+  Isogenie genannt, wenn $\phi(O)=O$.
+  Gibt es solch ein $\phi$, so heißen $E_1$ und $E_2$ isogen.
+\end{Definition}
+
+%---
+
 \section{Multiplication by m map}
 \section{m-Torsions-Untergrupppe}
 \section{Isogenien sind Homomorphismen}
