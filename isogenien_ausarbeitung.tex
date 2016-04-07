@@ -30,6 +30,8 @@
 \newtheorem{Theorem}[Satz]{Theorem}
 \newtheorem{Proposition}[Satz]{Proposition}
 \newtheorem{Lemma}[Satz]{Lemma}
+\newtheorem{Korollar}[Satz]{Korollar}
+\newtheorem{Beispiel}[Satz]{Beispiel}
 \theoremstyle{definition}
 \newtheorem{Definition}[Satz]{Definition}
 \theoremstyle{remark}
@@ -46,6 +48,10 @@
 \DeclareMathOperator{\Div}{Div} % Divisorengruppe
 \DeclareMathOperator{\Pic}{Pic} % Picard Gruppe
 \renewcommand{\div}{\operatorname{div}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+
 
 % TITEL
 \titlehead{Seminar Elliptische Kurven \\
@@ -93,16 +99,98 @@ Im Folgenden werden wir eine bestimmte
 %---
 
 \section{Definition, Basic Properties}
+Wir werden unsere Betrachtung von Morphismen nun auf sogenannte
+Isogenien einschränken und sehen, dass diese Gruppenhomomorphismen
+sind.
+
 \begin{Definition}[Isogenie]
   Ein Morphismus $\phi\colon E_1\to E_2$ von Elliptischen Kurven wird
   Isogenie genannt, wenn $\phi(O)=O$.
   Gibt es solch ein $\phi$, so heißen $E_1$ und $E_2$ isogen.
 \end{Definition}
 
-%---
+\begin{Definition}
+  Wir erhalten die Kategorie der Elliptischen Kurven mit Isogenien als
+  Morphismen und entsprechend für $E$, $E_1$, $E_2$ Elliptische Kurven
+  \begin{alignat*}{2}
+    \Hom(E_1, E_2)&=\{\text{Isogenien }\phi\colon E_1\to E_2\}
+    \qquad&&\text{Morphismengruppe}
+    \\
+    \End(E)&=\Hom(E,E)
+    &&\text{Endomorphismenring}\\
+    \Aut(E)&=\End(E)^*
+    &&\text{Automorphismengruppe} 
+  \end{alignat*}
+  $\Hom(E_1, E_2)$ hat eine Gruppenstruktur mit Addition
+  $(\phi+\psi)(P)\coloneqq \phi(P)+\psi(P)$ 
+  und $\End(E)$ wird mit Morphismenverknüpfung als Multiplikation zu 
+  einem Ring, dessen multiplikative Gruppe $\Aut(E)$ ist.
+\end{Definition}
 
-\section{Multiplication by m map}
+\begin{Bemerkung}
+Wir können jeden Morphismus $F\colon E_1\to E_2$ von Elliptischen
+Kurven, der den $O$-Punkt nicht erhält, auf eine Isogenie
+zurückführen.
+Denn nach \autoref{additionmorphismus} ist die Translation
+$\tau_{-F(O)}\colon E_2\to E_2$ um $-F(O)\in E_2$
+ein Morphismus, also auch 
+\begin{gather*}
+  F'\coloneqq\tau_{-F(O)}\circ F\colon E_1\to E_2
+\end{gather*}
+$F'$ ist eine Isogenie und $F=\tau_{F(O)}\circ F'$ kann über
+eine Translation verknüpft mit dieser Isogenie dargestellt werden.
+\end{Bemerkung}
+
 \section{m-Torsions-Untergrupppe}
+
+\begin{Beispiel}
+  Nach \autoref{additionmorphismus} ist für eine Elliptische Kurve $E$
+  und $m\in\Z$ die \enquote{Multiplikation mit $m$}
+  \begin{align*}
+    [m]\colon E &\longto E\\
+    P&\longmapsto [m](P) \coloneqq
+       \underbrace{P+P+\dotsb+P}_{m\text{-mal}}
+  \end{align*}
+  ein Morphismus und, da $[m](O)=O$, eine Isogenie.
+  Zu Elliptische Kurven über unendlichen Körpern, deren Endomorphismen
+  nicht allein diese Multiplikationen sind, sagt man, sie
+  haben komplexe Multiplikation.
+\end{Beispiel}
+
+\begin{Lemma}
+  Für eine Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$
+  ist $[m]\colon E\to E$ nicht konstant, d.\,h. $[m]\neq[0]$.
+  \begin{proof}
+    \cite[siehe][Proposition 4.2 (a)]{silverman}
+  \end{proof}
+\end{Lemma}
+
+\begin{Korollar}
+  Für Elliptische Kurven $E_1$, $E_2$ ist $\Hom(E_1,E_2)$ ein
+  torsionsfreier $\Z$-Modul, d.\,h. für jede Isogenie
+  $\phi\in\Hom(E_1,E_2)$ ist $[m]\circ\phi\neq[0]$ für $m\in\Z\setminus\{0\}$.
+    \begin{proof}
+    \cite[siehe][Proposition 4.2 (b)]{silverman}
+  \end{proof}
+\end{Korollar}
+
+\begin{Definition}[$m$-Torsionsuntergruppe]
+  Für einen Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$ ist die
+  $m$-Torsionsuntergruppe von $E$
+  \begin{gather*}
+    E[m] \coloneqq \left\{ P\in E\;\middle|\; [m](P)=O\right\}
+    = E[-m]
+  \end{gather*}
+  Die Torsionsuntergruppe von $E$ ist die Vereinigung
+  \begin{gather*}
+    E_\text{tors} \coloneqq \bigcup_{\mathclap{m=1}}^{\infty}E[m]
+  \end{gather*}
+\end{Definition}
+
+
+
+% ---
+
 \section{Isogenien sind Homomorphismen}
 \section{Galois-Theorie elliptischer Funktionenkörper}
 \section{Eindeutige Faktorisierung}
