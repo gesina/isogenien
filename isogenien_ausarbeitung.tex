@@ -34,6 +34,7 @@
 \newtheorem{Beispiel}[Satz]{Beispiel}
 \theoremstyle{definition}
 \newtheorem{Definition}[Satz]{Definition}
+\newtheorem{LemmaDefinition}[Satz]{Lemma/Definition}
 \theoremstyle{remark}
 \newtheorem{Bemerkung}[Satz]{Bemerkung}
 
@@ -192,7 +193,67 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 % ---
 
 \section{Isogenien sind Homomorphismen}
+\begin{Satz}
+  Isogenien sind Homomorphismen zwischen den Punktgruppen von
+  Elliptischen Kurven, d.\,h. für eine Isogenie $\phi\colon E_1\to
+  E_2$ gilt
+  \begin{gather*}
+    \phi(P+Q) = \phi(P) + \phi(Q)
+    \qquad \text{für alle } P,Q\in E_1
+  \end{gather*}
+\begin{proof}
+  Für die konstante Abbildung $\phi\equiv O$ ist es klar.
+  Ist $\phi$ nicht konstant, machen wir uns die Gruppenisomorphie
+  zwischen der Grad-0-Untergruppe der Picard-Gruppe und der
+  Punktegruppe einer Elliptischen Kurve zunutze
+  (s.\,\autoref{gruppenaequivalenz}).
+  Wir erhalten 
+  aus \autoref{gruppenaequivalenz}\,i) die Gruppenisomorphismen 
+  \begin{alignat*}{3}
+    &\kappa_1\colon&
+    E_1&\overset\sim\longto \Pic^0(E_1)
+    &P &\longmapsto \overline{(P)-(O)}\\
+    &\kappa_2\colon&
+    E_2&\overset\sim\longto \Pic^0(E_2)
+    &P &\longmapsto \overline{(P)-(O)}\\
+  \end{alignat*}
+  und aus \autoref{gruppenaequivalenz}\,ii) den zu $\phi$
+  korrespondierenden Gruppenhomomorphismus auf den Grad-0-Untergruppen
+  der Picard-Gruppen
+  \begin{align*}
+    \phi_*\colon \Pic^0(E_1) 
+    &\longto \Pic^0(E_2)\\
+    \overline{\sum_{\mathclap{P\in E_1}}n_P\cdot(P)}
+    &\longmapsto 
+      \overline{\sum_{\mathclap{P\in E_1}}n_P\cdot(\phi(P))}
+      \qquad .
+  \end{align*}
+  Insgesamt bekommen wir das kommutative Diagramm
+  \begin{center}
+    \begin{tikzcd}
+      E_1 
+      \arrow[r, "{\kappa_1}"{below}, "\sim"{above}]
+      \arrow[d,"\phi"{left}] 
+      & \Pic^0(E_1) 
+      \arrow[d, "\phi_*"{right}]
+      \arrow[dl, phantom, "\circlearrowleft"{description}]
+      \\
+      E_2 
+      \arrow[r, "{\kappa_2}"{below}, "\sim"{above}]
+      & \Pic^0(E_2) 
+    \end{tikzcd}
+  \end{center}
+  welches zeigt, dass $\phi=\kappa_2^{-1}\circ\phi_*\circ\kappa_1$
+  ist, also ein Gruppenhomomorphismus.
+\end{proof}
+\end{Satz}
+
+%---
+
 \section{Galois-Theorie elliptischer Funktionenkörper}
+
+%---
+
 \section{Eindeutige Faktorisierung}
 \section{Modulorechnung von Elliptischen Kurven}
 
