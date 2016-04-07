@@ -44,6 +44,7 @@
 \newcommand*{\algK}{\ensuremath{\overline K}} % algebraischer Abschluss
 \renewcommand*{\P}{\ensuremath{\mathds{P}}} % projektiver Raum
 \newcommand*{\longto}{\longrightarrow}
+\newcommand*{\longfrom}{\longleftarrow}
 \newcommand*{\Xn}{\underline{X}} % Variablenmenge
 \newcommand*{\degs}{\operatorname{\deg}_s} % Separabilitätsgrad
 \newcommand*{\degi}{\operatorname{\deg}_i} % Inseparabilitätsgrad
@@ -195,7 +196,7 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 % ---
 
 \section{Isogenien sind Homomorphismen}
-\begin{Satz}
+\begin{Satz}\label{isogenienhoms}
   Isogenien sind Homomorphismen zwischen den Punktgruppen von
   Elliptischen Kurven, d.\,h. für eine Isogenie $\phi\colon E_1\to
   E_2$ gilt
@@ -273,6 +274,72 @@ Nutzen sein kann.
       \#e_{\phi}(P_1) = \degi(\phi)
     \end{gather*}
   \end{enumerate}
+
+\begin{proof}
+  \begin{enumerate}[label=\roman*)]
+  \item Für \emph{i)} müssen wir nur die Aussage aus \autoref{sepgrad}\,ii)
+    (die Behauptung in \emph{i)} von oben gilt für alle außer endlich
+    viele Punkte in $E_2$) erweitern. Dazu zeigen wir, dass
+    $\#\phi^{-1}(Q)$ für alle Punkte $Q\in E_2$ gleich ist.
+    Betrachte also $Q,Q'\in E_2$. Nachdem $\phi$ surjektiv ist
+    (s.\,\autoref{morphismensurj}), gibt es einen Punkt $R\in E_1$ mit
+    \begin{gather*}
+      \phi(R) = Q - Q'
+    \end{gather*}
+    Nutzen wir aus, dass $\phi$ als Isogenie ein Gruppenhomomorphismus
+    zwischen den Punktegruppen von $E_1$ und $E_2$ ist nach
+    \autoref{isogenienhoms}, erhalten wir, dass die Translationen
+    \begin{align*}
+      \phi^{-1}(Q) &\longto \phi^{-1}(Q')
+      &\phi^{-1}(Q) &\longfrom \phi^{-1}(Q')\\
+      P &\longmapsto P+R
+      &P'-R &\longmapsfrom P'
+    \end{align*}
+    wohldefinierte, zueinander inverse Bijektionen sind.
+    Denn für jedes $P\in\phi^{-1}(Q)$ ist
+    $\phi(P+R)=\phi(P)+\phi(R)=Q'$, d.\,h. $(P+R)\in\phi^{-1}(Q')$,
+    und umgekehrt mit $-R$.
+    Damit braucht nur für einen Punkt $P\in E_2$ geben, für den das
+    gilt, welcher durch den Beweis zu \autoref{sepgrad}\,ii) gegeben ist
+    % \cite[siehe][II.6.8]{hartshorne}
+    ??
+    
+  \item Hier benötigen wir die Multiplikativität des Verzweigungsindex
+    aus \autoref{sepgrad}\,iii), um zu zeigen, dass auch alle Punkte
+    in $\phi^{-1}(Q)$ den gleichen Verzweigungsindex bzgl. $\phi$ haben.
+    Betrachte $P,P'\in E_1$ im Urbild $\phi^{-1}(Q)$. Das Bild ihrer
+    Differenz $R\coloneqq P'-P$ ist folglich
+    $\phi(P-P')=\phi(P)-\phi(P')=O$, weshalb die Verknüpfung
+    $\psi\circ\tau_R = \psi$ mit der Translation um $R$ wieder $\psi$
+    ist.
+    Dann gilt für die Verzweigungsindizes aufgrund der
+    Multiplikationsregel und mit $e_{\tau_R}\equiv1$ ($\tau_R$ ist
+    Isomorphismus):
+    \begin{gather*}
+      e_\phi(P) 
+      = e_{\phi\circ\tau_R}(P) 
+      = e_{\tau_R}\cdot e_\phi(\tau_R(P))
+      = e_\phi(\tau_R(P))
+      = e_\phi(P+R)
+      = e_\phi(P')
+    \end{gather*}
+    Nachdem mit dieser Begründung jeder Punkt in $\phi^{-1}(Q)$
+    denselben Verzweigungsindex hat, kann man folgendes Produkt
+    umschreiben:
+    \begin{align*}
+      \degs(\phi) \cdot \degi(\phi)
+      &= \deg(\phi)\\
+      &\overset{\mathllap{\ref{sepgrad}\,i)}}{=}
+        \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P)\\
+      &\overset{\mathllap{\text{alle Pkte gleich}}}{=}
+        \left( \#\phi^{-1}(Q) \right) \cdot e_\phi(P)\\
+      &\overset{\mathllap{\text{\emph{i)}}}}{=}
+        \degs(\phi)\cdot e_\phi(P)
+    \end{align*}
+    Kürzen liefert die Behauptung.
+    \item
+\end{enumerate}
+\end{proof}
 \end{Satz}
 
 %---
@@ -280,6 +347,6 @@ Nutzen sein kann.
 \section{Eindeutige Faktorisierung}
 \section{Modulorechnung von Elliptischen Kurven}
 
-\nocite{*}
+%\nocite{*}
 \printbibliography
 \end{document}

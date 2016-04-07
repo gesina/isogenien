@@ -155,19 +155,31 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   eindeutig bis auf Multiplikation mit Einheiten, da $P$ regulär ist).
 \end{Definition}
 
-\begin{Satz}
+\begin{Satz}\label{sepgrad}
   Sei $\phi\colon C_1\to C_2$ wieder eine nicht-konstante Abbildung
-  zwischen glatten Kurven. Dann gilt für alle $Q\in C_2$
-  \begin{gather*}
-    \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P) = \deg\phi
-  \end{gather*}
-  Insbesondere gilt, da $\deg\phi$ endlich ist
-  (s. \ref{funktionenkoerper}) und $e_\phi(P)\geq 1$,
-  dass das Urbild $\phi^{-1}(Q)$ jedes Punkts $Q\in C_2$
-  endlich viele Punkte in $C_1$ enthält.
-  \begin{proof}
-    \cite[siehe][Proposition II.2.6 (a)]{silverman}
-  \end{proof}
+  zwischen glatten Kurven. 
+  \begin{enumerate}[label=\roman*)]
+    \item Es gilt für alle $Q\in C_2$
+      \begin{gather*}
+        \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P) = \deg\phi
+      \end{gather*}
+      Insbesondere gilt, da $\deg\phi$ endlich ist
+      (s. \ref{funktionenkoerper}) und $e_\phi(P)\geq 1$,
+      dass das Urbild $\phi^{-1}(Q)$ jedes Punkts $Q\in C_2$
+      endlich viele Punkte in $C_1$ enthält.
+    \item Für alle außer endlich viele Punkte $Q\in C_2$ gilt
+      \begin{gather*}
+        \#\phi^{-1}(Q) = \degs(\phi)
+      \end{gather*}
+    \item Der Verzweigungsindex ist multiplikativ
+      in folgendem Sinne
+      \begin{gather*}
+        e_{\psi\circ\phi}(P) = e_\phi(P) \cdot e_\psi(\phi(P))
+      \end{gather*}
+    \end{enumerate}
+    \begin{proof}
+      \cite[siehe][Proposition II.2.6]{silverman}
+    \end{proof}
 \end{Satz}
 
 % ---
@@ -176,7 +188,7 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
 \begin{Definition}[Divisorengruppe]
   Für eine Kurve $C$ wird die von den Punkten von $C$ erzeugte, freie
   abelsche Gruppe als die Gruppe $\Div(C)$ bezeichnet und ihre
-  Elemente heißte Divisoren. Ein Punkt $P$ erhält als Divisor die
+  Elemente heißen Divisoren. Ein Punkt $P$ erhält als Divisor die
   Schreibweise $(P)$. 
   Der Grad eines Divisors $D=\sum_{P\in C}n_P\cdot(P)$ ist definiert als
   \begin{gather*}
