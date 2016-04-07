@@ -45,6 +45,8 @@
 \renewcommand*{\P}{\ensuremath{\mathds{P}}} % projektiver Raum
 \newcommand*{\longto}{\longrightarrow}
 \newcommand*{\Xn}{\underline{X}} % Variablenmenge
+\newcommand*{\degs}{\operatorname{\deg}_s} % Separabilitätsgrad
+\newcommand*{\degi}{\operatorname{\deg}_i} % Inseparabilitätsgrad
 \DeclareMathOperator{\ord}{ord} % diskrete Bewertung
 \DeclareMathOperator{\Div}{Div} % Divisorengruppe
 \DeclareMathOperator{\Pic}{Pic} % Picard Gruppe
@@ -153,9 +155,9 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
        \underbrace{P+P+\dotsb+P}_{m\text{-mal}}
   \end{align*}
   ein Morphismus und, da $[m](O)=O$, eine Isogenie.
-  Zu Elliptische Kurven über unendlichen Körpern, deren Endomorphismen
-  nicht allein diese Multiplikationen sind, sagt man, sie
-  haben komplexe Multiplikation.
+  Zu Elliptische Kurven über Körpern von Charakteristik 0, deren
+  Endomorphismen nicht allein diese Multiplikationen sind, sagt man,
+  sie haben komplexe Multiplikation.
 \end{Beispiel}
 
 \begin{Lemma}
@@ -251,6 +253,27 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 %---
 
 \section{Galois-Theorie elliptischer Funktionenkörper}
+Aus \autoref{funktionenkoerper} wissen wir bereits, dass Isogenien
+durch eine Kategorienantiäquivalenz als Körpererweiterungen aufgefasst
+werden können und entsprechend für $\phi\colon E_1\to E_2$ der
+Erweiterungsgrad $\deg(\phi)$, der Separabilitätsgrad $\degs(\phi)$
+und der Inseparabilitätsgrad $\degi(\phi)$ definiert wird.
+Im Folgenden sehen wir, inwiefern uns diese Charakterisierung von
+Nutzen sein kann.
+
+\begin{Satz}[Galois Theory elliptischer Funktionenkörper]
+  Sei $\phi\colon E_1\to E_2$ eine nicht-konstante Isogenie.
+  \begin{enumerate}[label=\roman*)]
+  \item Für alle $P_2\in E_2$ gilt
+    \begin{gather*}
+      \#\phi^{-1}(P_2) = \degs(\phi)
+    \end{gather*}
+  \item Für alle $P_1\in E_1$ gilt
+    \begin{gather*}
+      \#e_{\phi}(P_1) = \degi(\phi)
+    \end{gather*}
+  \end{enumerate}
+\end{Satz}
 
 %---
 

@@ -107,18 +107,29 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
     \phi^* \colon \K(C_2) &\longto \K(C_1)\\
     f &\longmapsto f\circ \phi
   \end{align*}
+  Diese Erweiterung ist endlich
+  \cite[siehe][Theorem II.2.4 (a)]{silverman}.
 
   Man kann $\phi$ anhand der Eigenschaften der Körpererweiterung
   $\K(C_1)/\phi^*(\K(C_2))$ charakterisieren und erhält
-  dementsprechend für $\phi$ nicht konstant
-  \begin{gather*}
-    \deg\phi \coloneqq \left[ \K(C_1) : \phi^*(\K(C_2)) \right]
-  \end{gather*}
+  dementsprechend für $\phi$ nicht-konstant
+  \begin{alignat*}{2}
+    \deg(\phi) &\coloneqq \left[ \K(C_1) : \phi^*(\K(C_2)) \right]
+    \qquad&&\text{(Erweiterungs-)Grad von }\phi\\
+    \degs(\phi) &\coloneqq \left[ \K(C_1) : \phi^*(\K(C_2)) \right]_s
+    \qquad&&\text{Separabilitätsgrad von }\phi\\
+    \degi(\phi) &\coloneqq \left[ \K(C_1) : \phi^*(\K(C_2)) \right]_i
+    \qquad&&\text{Inseparabilitätsgrad von }\phi
+  \end{alignat*}
   bzw. die Bezeichnungen endlich/separabel/inseparabel/rein
-  inseparabel.
+  inseparabel. Zur Erinnerung: Es gelten die Zusammenhänge
+  \begin{align*}
+    \degs(\phi) 
+    &\coloneqq \left[ \K(C_1) : \phi^*(\K(C_2)) \right]_s
+    \coloneqq \#\Hom_K(\K(C_1), \overline{\K(C_2)})\\
+    \deg(\phi) &= \degs(\phi)\cdot\degi(\phi)
+  \end{align*}
   Wir setzen $\deg\phi\coloneqq 0$ für konstantes $\phi$.
-  Es gilt allgemein, dass $\deg\phi$ endlich ist.
-  \cite[siehe][Theorem II.2.4 (a)]{silverman}.
 \end{LemmaDefinition}
 
 \begin{Korollar}[Kategorienäquivalenz]\label{kategorienaequivalenz}
