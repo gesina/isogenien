@@ -82,11 +82,11 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
 \begin{Lemma}\label{morphismensurj}
   Ein Morphismus von Kurven ist entweder konstant oder surjektiv.
   \begin{proof}
-    \cite[siehe][Theorem 2.3]{silverman}
+    \cite[siehe][Theorem II.2.3]{silverman}
   \end{proof}
 \end{Lemma}
 
-%---
+% ---
 
 \subsection{Verzweigungsindex}
 \begin{Bemerkung}[Kategorie der glatten Kurven]
@@ -99,10 +99,10 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   \end{description}
 \end{Bemerkung}
 
-\begin{Bemerkung}[Kategorienäquivalenz]\label{kategorienaequivalenz}
+\begin{LemmaDefinition}\label{funktionenkoerper}
   Eine rationale Abbildung $\phi\colon C_1\to C_2$ auf Kurven, die auf
   $\K$ definiert sind,
-  induziert eine injektive Abbildungen auf den Funktionenkörpern
+  induziert eine Körpererweiterung über $\K$ auf den Funktionenkörpern
   \begin{align*}
     \phi^* \colon \K(C_2) &\longto \K(C_1)\\
     f &\longmapsto f\circ \phi
@@ -118,8 +118,10 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   inseparabel.
   Wir setzen $\deg\phi\coloneqq 0$ für konstantes $\phi$.
   Es gilt allgemein, dass $\deg\phi$ endlich ist.
-  \cite[siehe][Theorem 2.4 (a)]{silverman}.
+  \cite[siehe][Theorem II.2.4 (a)]{silverman}.
+\end{LemmaDefinition}
 
+\begin{Korollar}[Kategorienäquivalenz]\label{kategorienaequivalenz}
   Dies liefert eine Kategorienantiäquivalenz zwischen der Kategorie der
   glatten Kurven und der Kategorie der Körpererweiterungen $\K'$ über $\K$
   mit Transzendenzgrad 1 und $\K'\cap\algK=\K$:
@@ -127,9 +129,8 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
     C/K &\Longrightarrow \K(C)\\
     \phi\colon C_1\to C_2 &\Longrightarrow \phi^*\colon\K(C_2)\to\K(C_1)
   \end{align*}
-  
-%% Körpererweiterungszeugs: siehe S.24–25
-\end{Bemerkung}
+  %% Körpererweiterungszeugs: siehe S.24–25
+\end{Korollar}
 
 \begin{Definition}[Verzweigungsindex]
   Sei $\phi\colon C_1\to C_2$ eine nicht-konstante Abbildung zwischen
@@ -150,15 +151,15 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
     \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P) = \deg\phi
   \end{gather*}
   Insbesondere gilt, da $\deg\phi$ endlich ist
-  (s. \ref{kategorienaequivalenz}) und $e_\phi(P)\geq 1$,
+  (s. \ref{funktionenkoerper}) und $e_\phi(P)\geq 1$,
   dass das Urbild $\phi^{-1}(Q)$ jedes Punkts $Q\in C_2$
   endlich viele Punkte in $C_1$ enthält.
   \begin{proof}
-    \cite[siehe][Proposition 2.6 (a)]{silverman}
+    \cite[siehe][Proposition II.2.6 (a)]{silverman}
   \end{proof}
 \end{Satz}
 
-%---
+% ---
 
 \subsection{Divisorengruppe}
 \begin{Definition}[Divisorengruppe]
@@ -200,40 +201,64 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   \end{center}
 \end{Definition}
 
-Aus der Algebraischern Geometrie ist bekannt, dass die Punkte einer
+Aus der Algebraischen Geometrie ist bekannt, dass die Punkte einer
 Elliptischen Kurve $E$ mit einer geometrischen Addition eine Gruppe
 bilden.
 
-\begin{Satz}
-  Für Elliptische Kurven (d.\,h. Kurven vom Genus 1 mit oben genannter
-  Gruppenstruktur zum neutralen Element $O\in E$)gibt es einen
-  Gruppenisomorphismus
-  \begin{align*}
-    \sigma\colon \Pic^0(E) &\longto E\\
-    \overline{(D)} &\mapsto \overline{(P)}
-                     \quad\text{mit}\quad D\sim (P)-(O)\\
-    \overline{(P)-(O)} &\longmapsfrom P : \tau
-  \end{align*}
-\end{Satz}
-Wir werden die beiden Gruppen im Folgenden immer miteinander
-identifizieren.
+\begin{Satz}\label{gruppenaequivalenz}
+  Eine Elliptische Kurve sei als Gruppe ihrer Punkte aufgefasst.
+  \begin{enumerate}[label=\roman*)]
+  \item 
+    Für eine Elliptische Kurve $E$ mit neutralem Element $O\in E$ gibt
+    es einen Gruppenisomorphismus
+    \begin{align*}
+      \sigma\colon \Pic^0(E) &\longto E\\
+      \overline{(D)} &\mapsto P
+                       \quad\text{mit}\quad D\sim (P)-(O)\\
+      \overline{(P)-(O)} &\longmapsfrom P : \kappa
+    \end{align*}
 
-\begin{Satz}\label{additionmorphismus}
-  Substraktion und Addition (bzw. Translation $\tau_Q$ um $Q\in E$)auf
-  Elliptischen Kurven sind Morphismen von Kurven. Die Abbildungen sind:
-  \begin{align*}
-    \tau_Q\coloneqq\bullet+Q\colon E\times E&\longto E  
-    &&\text{und}  
-    &-\bullet\colon E&\longto E \\
-    P&\longmapsto P+Q             
-    &&&P&\longmapsto -P
-  \end{align*}
+  \item
+    Jeder nicht-konstante Morphismus $\phi\colon E_1\to E_2$, 
+    auf elliptischen Kurven $E_1$, $E_2$ induziert Gruppenhomomorphismen
+    \begin{alignat*}{3}
+      &\phi_*\colon& \Div(E_1) 
+      &\longto \Div(E_2),
+      \qquad
+      &(P) &\longmapsto (\phi(P))\\
+      &\phi_*\colon& \Div^0(E_1) 
+      &\longto \Div^0(E_2),
+      &(P) &\longmapsto (\phi(P))\\
+      &\phi_*\colon& \Pic^0(E_1) 
+      &\longto \Pic^0(E_2),
+      &\overline{(P)} &\longmapsto \overline{(\phi(P))}\\
+    \end{alignat*}
+  \end{enumerate}
   \begin{proof}
-    \cite[siehe][Theorem 3.6]{silverman}
-  \end{proof}
-\end{Satz}
+    Zu \emph{i)} \cite[siehe][Proposition III.3.4]{silverman} und
+    zu \emph{ii)} \cite[siehe][Remark II.3.7]{silverman}.
+    \end{proof}
+  \end{Satz}
+  Wir werden die beiden Gruppen im Folgenden immer miteinander
+  identifizieren.
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "isogenien_ausarbeitung"
-%%% End:
+
+  \begin{Satz}\label{additionmorphismus}
+    Substraktion und Addition (bzw. Translation $\tau_Q$ um $Q\in E$)auf
+    Elliptischen Kurven sind Morphismen von Kurven. Die Abbildungen sind:
+    \begin{align*}
+      \tau_Q\coloneqq\bullet+Q\colon E\times E&\longto E  
+      &&\text{und}  
+      &-\bullet\colon E&\longto E \\
+      P&\longmapsto P+Q             
+      &&&P&\longmapsto -P
+    \end{align*}
+    \begin{proof}
+      \cite[siehe][Theorem III.3.6]{silverman}
+    \end{proof}
+  \end{Satz}
+
+  %%% Local Variables:
+  %%% mode: latex
+  %%% TeX-master: "isogenien_ausarbeitung"
+  %%% End:
