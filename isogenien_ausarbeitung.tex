@@ -56,6 +56,8 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
 \newcommand{\Id}{\mathrm{id}}
+\DeclareMathOperator{\im}{im} % image
+\newcommand{\tlambda}{\tilde\lambda} % alternative Abbildung \lambda
 
 % TITEL
 \titlehead{Seminar Elliptische Kurven \\
@@ -262,7 +264,7 @@ und der Inseparabilitätsgrad $\degi(\phi)$ definiert wird.
 Im Folgenden sehen wir, inwiefern uns diese Charakterisierung von
 Nutzen sein kann.
 
-\begin{Satz}[Galois Theory elliptischer Funktionenkörper]
+\begin{Satz}[Galois Theory elliptischer Funktionenkörper]\label{galois}
   Sei $\phi\colon E_1\to E_2$ eine nicht-konstante Isogenie.
   \begin{enumerate}[label=\roman*)]
   \item Für alle $P_2\in E_2$ gilt
@@ -462,9 +464,64 @@ Nutzen sein kann.
 
 Der nächste Satz macht eine Aussage darüber, wie man Isogenien anhand
 ihrer Kerne charakterisieren kann.
+Zuvor benötigen wir noch ein Lemma, das uns zu einer Körpererweiterung
+von Funktionenkörpern eine eindeutige Isogenie liefert.
+
+\begin{Lemma}\label{erweiterungzuratabb}
+  Sei $\iota\colon \K(C_2)\to\K(C_1)$ eine Körpererweiterung von
+  Funktionenkörpern zu über $K$ definierten, glatten Kurven $C_1$ und
+  $C_2$, die $K$ fixiert. Dann gibt es eine 
+  eindeutige, über $K$ definierte, nicht-konstante, rationale
+  Abbildung $\lambda\colon C_1\to C_2$ mit $\lambda^* = \iota$.
+  Ist $C_1$ glatt, ist $\lambda$ nach \autoref{ratabbglattekurven}
+  ein Morphimus.
+  \begin{proof}
+    \begin{description}
+      \item[Existenz] Sei \OE{} $C_2\in\P^n$ nicht in der Hyperebene
+        $X_0=0$ enthalten und
+        $g_i\coloneqq\overline{\left(\frac{X_i}{X_0}\right)}\in\K(C_2)$.
+        Dann erfüllt die Abbildung
+        \begin{gather*}
+          \lambda\coloneqq \left[1, \iota(g_1),\dotsc,\iota(g_n)\right]
+        \end{gather*}
+        die gewünschte Eigenschaft, denn auf den Erzeugern $g_i$ gilt
+        \begin{gather*}
+          \iota(g_i) 
+          = \frac{\iota(g_i)}{1} 
+          = \left(\frac{X_i}{X_0}\right)\circ\lambda
+          = g_i\circ\lambda
+          = \lambda^*(g_i)
+        \end{gather*}
+        Sie ist nicht konstant, da die
+        $g_i$ nicht alle konstant sind und $\iota$ injektiv ist, also
+        die $\iota(g_i)$ ebenfalls nicht alle konstant sind. Und sie
+        ist offensichtlich rational sowie über $\K$ definiert.
+      \item[Eindeutigkeit]
+        Sei $\tlambda\coloneqq[f_0,\dotsc,f_n]$ eine weitere
+        Abbildungen mit den gesuchten Eigenschaften.
+        Dann gilt
+        \begin{gather*}
+          \frac{f_i}{f_0}
+          %= \left(\frac{X_i}{X_0}\right)\circ\tlambda 
+          = g_i\circ\tlambda
+          = \tlambda^*(g_i) 
+          \overset{\text{Annahme}}{=}
+          \iota(g_i)
+        \end{gather*}
+        also 
+        \begin{gather*}
+          \tlambda
+          \coloneqq \left[ f_0,f_1,\dotsc,f_n \right]
+          = \left[ 1, \frac{f_1}{f_0}, \dotsc, \frac{f_n}{f_0}\right]
+          = \left[ 1, \iota(g_1), \dotsc, \iota(g_n) \right]
+          \eqqcolon \lambda
+        \end{gather*}
+    \end{description}
+  \end{proof}
+\end{Lemma}
 
 \begin{Satz}
-  Für eine separable Isogenie $\phi\colon E_1\to E_2$.
+  Sei $\phi\colon E_1\to E_2$ eine separable Isogenie.
   Jede weitere Isogenie $\psi\colon E_1\to E_3$ mit
   \begin{gather*}
     \ker\phi \subset \ker\psi
@@ -474,6 +531,53 @@ ihrer Kerne charakterisieren kann.
   \begin{gather*}
     \psi = \lambda\circ\phi\;.
   \end{gather*}
+  \begin{proof}
+    \autoref{galois}\,iv) liefert uns, dass
+    $\algK(E_1)/\phi^*(\algK(E_2))$ eine Galoiserweiterung ist mit
+    Galoisgruppe $\Aut_{\phi^*(\algK(E_2))}(\algK(E_1))$.
+    Der Isomorphismus aus \autoref{galois}\,iii) zeigt, dass sie aus
+    Elementen der Form $\tau_T^*$ mit $T\in\ker(\phi)$ besteht.
+    Da nach Voraussetzung $\ker(\phi)\subset\ker(\psi)$ gilt,
+    ist auch
+    \begin{align*}
+      \Aut_{\phi^*(\algK(E_2))}(\algK(E_1))
+      &= \left\{ \tau_T^* \;\middle|\; T\in\ker(\phi) \right\} \\
+      &\subset
+      \left\{ \tau_T^* \;\middle|\; T\in\ker(\psi) \right\}
+      = \Aut_{\psi^*(\algK(E_3))}(\algK(E_1))
+    \end{align*}
+    D.\,h. die Galoisgruppe fixiert den Unterkörper
+    $\psi^*(\algK(E_3))$, weshalb er nach Galoistheorie ein
+    Unterkörper von $\phi^*(\algK(E_2))$ sein muss.
+    Wir erhalten folgende Kette von Körpererweiterungen
+    \begin{gather*}
+      \psi^*(\algK(E_3)) 
+      \subset \phi^*(\algK(E_2)) 
+      \subset \algK(E_1)
+    \end{gather*}
+    Da $\phi^*$ injektiv und $\phi^*|_{\im(\phi^*)}$ ein
+    Körperisomorphismus ist, erhalten wir eine Körpererweiterung
+    \begin{gather*}
+      \iota\coloneqq 
+      (\phi^*)^{-1} \circ \psi^*
+      \colon \algK(E_3) \longto \algK(E_2)
+    \end{gather*}
+    \autoref{erweiterungzuratabb} liefert jetzt einen Morphismus
+    $\lambda\colon E_3\to E_2$ mit
+    \begin{gather*}
+      \lambda^* = \iota = (\phi^*)^{-1} \circ \psi^*
+      \qquad\text{bzw.}\qquad
+      \phi^*\circ\lambda^* = \psi^*
+    \end{gather*}
+    also wie gesucht $\lambda\circ\phi = \psi$.
+    Es bleibt zu zeigen, dass $\lambda$ eine Isogenie ist:
+    \begin{gather*}
+      \lambda(O) 
+      \overset{\text{$\phi$ Isog.}}{=} \lambda(\phi(O))
+      = \psi(O) 
+      = O
+    \end{gather*}
+  \end{proof}
 \end{Satz}
 
 %---
