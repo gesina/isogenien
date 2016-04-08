@@ -580,10 +580,36 @@ von Funktionenkörpern eine eindeutige Isogenie liefert.
   \end{proof}
 \end{Satz}
 
-%---
 
-\section{Eindeutige Faktorisierung}
-\section{Modulorechnung von Elliptischen Kurven}
+Es wird sich im Folgenden herausstellen, dass man durch bestimmte
+Quotientenbildung auf der Punktegruppe einer Elliptischen Kurve wieder
+die Struktur einer Elliptischen Kurve erhält.
+
+\begin{Satz}
+  Sei $E$ eine Elliptische Kurve und $F\subset E$ eine endliche
+  Untergruppe.
+  Dann gibt es eine eindeutige Elliptische Kurve $E'$ und eine
+  separable Isogenie $\phi\colon E\to E'$, so dass
+  \begin{gather*}
+    \ker\phi = F
+  \end{gather*}
+  $E'$ wird auch $E/F$ geschrieben.
+
+  Ist $E$ definiert über $K$ und $F$ invariant bzgl. der Galoisgruppe
+  von $\algK/\K$, so können $E'$ und $\phi$ definiert über $K$ gewählt
+  werden.
+  \begin{proof}
+    Zuerst benötigen wir einen geeigneten Unterkörper von $\algK(E)$
+    als Funktionenkörper vom gesuchten $E'$.
+    Wie in \autoref{galois}\,\emph{iii)} erhalten wir zu jedem Punkt
+    $T\in F$ einen Automorphismus $\tau_T^*$ von $\algK(E)$.
+    Bezeichne die Untergruppe dieser Automorphismen mit 
+    $\Psi\coloneqq\{\tau_T^* | T\in F\}$ und
+    betrachte den Fixkörper $\algK(E)^\Psi$.    
+  \end{proof}
+
+\end{Satz}
+
 
 %\nocite{*}
 \printbibliography
