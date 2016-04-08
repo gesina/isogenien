@@ -55,7 +55,7 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
-
+\newcommand{\Id}{\mathrm{id}}
 
 % TITEL
 \titlehead{Seminar Elliptische Kurven \\
@@ -273,14 +273,36 @@ Nutzen sein kann.
     \begin{gather*}
       \#e_{\phi}(P_1) = \degi(\phi)
     \end{gather*}
+  \item Sei für einen Punkt $T\in E_1$ wieder 
+    $\tau_T\colon P\mapsto P+T$ die Translationsabbildung und 
+    $\tau_T^*$ die induzierte Abbildung auf $\algK(E_1)$.
+    Dann ist
+    \begin{align*}
+      \Omega\colon
+      \ker(\phi) 
+      &\longto \Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) \\
+      T 
+      &\longmapsto \left( \tau_T^* \colon f\mapsto f\circ \tau_T \right)
+    \end{align*}
+    ein Gruppenisomorphismus.
+  \item Ist $\phi$ separabel, 
+    so ist $\phi$ unverzweigt,
+    (d.\,h. $e_\phi(P)=1$ für alle $P\in E_2$),
+    $\algK(E_1)$ ist eine Galoiserweiterung von $\phi^*(\algK(E_2))$
+    und
+    \begin{gather*}
+      \#\ker(\phi) = \deg(\phi)
+    \end{gather*}
+
   \end{enumerate}
 
-\begin{proof}
+\begin{proof}~
   \begin{enumerate}[label=\roman*)]
-  \item Für \emph{i)} müssen wir nur die Aussage aus \autoref{sepgrad}\,ii)
-    (die Behauptung in \emph{i)} von oben gilt für alle außer endlich
-    viele Punkte in $E_2$) erweitern. Dazu zeigen wir, dass
-    $\#\phi^{-1}(Q)$ für alle Punkte $Q\in E_2$ gleich ist.
+  \item Für diesen Teil müssen wir nur die Aussage aus
+    \autoref{sepgrad}\,ii) (die Behauptung in \emph{i)} von oben gilt
+    für alle außer endlich viele Punkte in $E_2$) erweitern. Dazu
+    zeigen wir, dass $\#\phi^{-1}(Q)$ für alle Punkte $Q\in E_2$
+    gleich ist. 
     Betrachte also $Q,Q'\in E_2$. Nachdem $\phi$ surjektiv ist
     (s.\,\autoref{morphismensurj}), gibt es einen Punkt $R\in E_1$ mit
     \begin{gather*}
@@ -318,7 +340,7 @@ Nutzen sein kann.
     \begin{gather*}
       e_\phi(P) 
       = e_{\phi\circ\tau_R}(P) 
-      = e_{\tau_R}\cdot e_\phi(\tau_R(P))
+      = e_{\tau_R}(P) \cdot e_\phi(\tau_R(P))
       = e_\phi(\tau_R(P))
       = e_\phi(P+R)
       = e_\phi(P')
@@ -337,9 +359,121 @@ Nutzen sein kann.
         \degs(\phi)\cdot e_\phi(P)
     \end{align*}
     Kürzen liefert die Behauptung.
-    \item
-\end{enumerate}
+    \item 
+      \begin{description}
+        \item[Wohldefiniertheit] $\tau_T$ ist bereits als Morphismus
+          von Kurven ein Automorphismus von $E_1$ und damit ist
+          $\tau_T^*$ ein Automorphismus von $\algK(E_1)$. Bleibt zu
+          zeigen, dass $\phi^*(\algK(E_2))$ fixiert wird.
+          Sei $T\in\ker(\phi)$, dann ist $\phi\circ\tau_T=\phi$.
+          Für $f\in\algK(E_2)$ erhalten wir
+          \begin{gather*}
+            \tau_T^*(\phi^*(f)) = (\phi\circ\tau_T)^*(f) = \phi^*(f)
+          \end{gather*}
+          Also wird $\phi^*(\algK(E_2))$ fixiert.
+        \item[Homomorphismus] Seien $S,T\in E_1$. Laut Definition ist
+          klar, dass $\tau_S\circ\tau_T = \tau_{S+T}$. Also
+          \begin{align*}
+            \Omega(T+S)(f)
+            &= \tau^*_{T+S}(f)\\
+            &= f\circ\tau_{T+S} 
+            = f\circ\tau_{S+T}
+            = f\circ\tau_{S}\circ\tau_{T}\\
+            &= \tau^*_T\circ\tau^*_S(f)
+            = \Omega(T)\circ\Omega(S)(f)
+          \end{align*}
+        \item[Surjektivität]
+          Für eine vereinfachte Schreibweise identifizieren wir im
+          Folgenden den Unterkörper ${\phi^*(\algK(E_2))}$ von
+          $\algK(E_1)$ mit $\algK(E_2)$.
+          Nach Algebra kann jeder
+          $\algK(E_2)$-Automorphismus von $\algK(E_1)$
+          erweitert werden zu einer 
+          $\algK(E_2)$-Einbettung von $\algK(E_1)$ in den
+          algebraischen Abschluss $\overline{\algK(C_2)}$. Laut 
+          Galoistheorie gilt folgende Ungleichung
+          \begin{align*}
+            \#\Aut_{\algK(E_2)}\left( \algK(E_1) \right) 
+            &\leq \#\Hom_K\left( \algK(C_1), \overline{\algK(C_2)} \right)\\
+            &\eqqcolon
+              \degs\left(\algK(C_1)/\algK(C_2)\right)\\
+            &\eqqcolon \degs(\phi)
+          \end{align*}
+          Insgesamt gilt mit der Aussage $\degs(\phi)=\#\phi^{-1}(O)$
+          aus \emph{i)}
+          \begin{gather*}
+            \#\Aut_{\algK(E_2)}\left( \algK(E_1) \right) 
+            \leq \degs(\phi)
+            \overset{\emph{i)}}{=} \#\phi^{-1}(O)
+            =\#\ker(\phi)
+          \end{gather*}
+          Nachdem es sich um eine endliche Erweiterung handelt, sind
+          alle Teile der Ungleichung endlich und wir erhalten die
+          Surjektivität von $\Omega$ mit dem Schubladenprinzip.
+        \item[Injektivität] Sei 
+          $\tau_T^* = \Id_{\algK(E_1)} = \tau_O^*
+          \in\Aut_{\phi^*(\algK(E_2))}( \algK(E_1) )$.
+          Das heißt für alle Funktionen $f\in\algK(E_1)$
+          \begin{gather*}
+            f 
+            = f\circ\tau_O
+            = \tau_O^*(f) 
+            = \tau_T^*(f) 
+            = f\circ\tau_T
+          \end{gather*}
+          Aus der Definition der rationalen Abbildungen $\tau_T$ und
+          $\tau_O$ \cite[siehe][Group Law Algorith 2.3(c)]{silverman},
+          die stark von den Koordinaten von $T$ und $O$ abhängen,
+          geht hervor, dass dann bereits die Koordinaten von
+          $T$ und $O$ übereinstimmen müssen. Damit muss $T=O$ sein.
+        \end{description}
+    \item Sei $\phi$ separabel. Das heißt per Definition
+      $\deg(\phi)=\degs(\phi)$.
+      \begin{description}
+        \item[Kernmächtigkeit]
+          Mit \emph{i)} gilt
+          $
+          \#\ker(\phi)
+          \coloneqq \#\phi^{-1}(O)
+          \overset{\mathclap{\emph{i)}}}{=} \degs(\phi)
+          \overset{{\text{sep.}}}{=} \deg(\phi)
+          $.
+        \item[Unverzweigtheit] 
+          Entsprechend ist
+          $\degi(\phi)=\frac{\deg(\phi)}{\degs(\phi)}=1$
+          und mit \emph{ii)} gilt
+          $e_\phi(P)=1$ für alle $P\in E_1$, d.\,h. $\phi$
+          ist unverzweigt.
+        \item[Galoiserweiterung]
+          Mit \emph{i)} und \emph{iii)} gilt
+          \begin{align*}
+            \#\Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) 
+            \overset{\mathclap{\text{\emph{iii)}}}}{=}
+              \#\ker(\phi)
+            \overset{{\text{s.o.}}}{=} \deg(\phi)
+            \coloneqq \left[\algK(C_1):\phi^*(\algK(C_2))\right]
+          \end{align*}
+          was äquivalent zu
+          $\algK(C_1)/\phi^*(\algK(C_2))$ galoissch ist.
+        \end{description}
+      \end{enumerate}
 \end{proof}
+\end{Satz}
+
+Der nächste Satz macht eine Aussage darüber, wie man Isogenien anhand
+ihrer Kerne charakterisieren kann.
+
+\begin{Satz}
+  Für eine separable Isogenie $\phi\colon E_1\to E_2$.
+  Jede weitere Isogenie $\psi\colon E_1\to E_3$ mit
+  \begin{gather*}
+    \ker\phi \subset \ker\psi
+  \end{gather*}
+  faktorisiert eindeutig über $\psi$, d.\,h. es gibt eine eindeutige
+  Isogenie $\lambda\colon E_2\to E_3$ mit
+  \begin{gather*}
+    \psi = \lambda\circ\phi\;.
+  \end{gather*}
 \end{Satz}
 
 %---
