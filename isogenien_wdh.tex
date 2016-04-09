@@ -88,21 +88,18 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
 
 % ---
 
-\subsection{Verzweigungsindex}
+\subsection{Kategorie der glatten Kurven und Kategorienäquivalenz}
 \begin{Bemerkung}[Kategorie der glatten Kurven]
-  Wir erhalten die Kategorie der glatten Kurven:
-  \begin{description}
-  \item[Objekte] glatte Kurven
-  \item[Morphismen] surjektive Morphismen (nach Lemma
-    \ref{ratabbglattekurven} und \ref{morphismensurj} also
-    nicht-konstante, rationale Abbildungen)
-  \end{description}
+  Wir erhalten die Kategorie der glatten Kurven
+  mit nicht-konstanten, rationalen Abbildungen als Morphismen 
+  (nach Lemma \ref{ratabbglattekurven} und \ref{morphismensurj} also
+  surjektive Morphismen von Kurven)
 \end{Bemerkung}
 
 \begin{LemmaDefinition}\label{funktionenkoerper}
-  Eine rationale Abbildung $\phi\colon C_1\to C_2$ auf Kurven, die auf
-  $\K$ definiert sind,
-  induziert eine Körpererweiterung über $\K$ auf den Funktionenkörpern
+  Eine rationale Abbildung $\phi\colon C_1\to C_2$ von auf $\K$
+  definierten Kurven induziert eine Körpererweiterung über $\K$ auf
+  den Funktionenkörpern
   \begin{align*}
     \phi^* \colon \K(C_2) &\longto \K(C_1)\\
     f &\longmapsto f\circ \phi
@@ -132,17 +129,76 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   Wir setzen $\deg\phi\coloneqq 0$ für konstantes $\phi$.
 \end{LemmaDefinition}
 
-\begin{Korollar}[Kategorienäquivalenz]\label{kategorienaequivalenz}
-  Dies liefert eine Kategorienantiäquivalenz zwischen der Kategorie der
-  glatten Kurven und der Kategorie der Körpererweiterungen $\K'$ über $\K$
-  mit Transzendenzgrad 1 und $\K'\cap\algK=\K$:
+\begin{Lemma}\label{erweiterungzuratabb}
+  Sei $\iota\colon \K(C_2)\to\K(C_1)$ eine Körpererweiterung von
+  Funktionenkörpern zu über $K$ definierten, glatten Kurven $C_1$ und
+  $C_2$, die $K$ fixiert. Dann gibt es eine 
+  eindeutige, über $K$ definierte, nicht-konstante, rationale
+  Abbildung $\lambda\colon C_1\to C_2$ mit $\lambda^* = \iota$.
+  Ist $C_1$ glatt, ist $\lambda$ nach \autoref{ratabbglattekurven}
+  ein Morphimus.
+  \begin{proof}
+    \begin{description}
+      \item[Existenz] Sei \OE{} $C_2\in\P^n$ nicht in der Hyperebene
+        $X_0=0$ enthalten und
+        $g_i\coloneqq\overline{\left(\frac{X_i}{X_0}\right)}\in\K(C_2)$.
+        Dann erfüllt die Abbildung
+        \begin{gather*}
+          \lambda\coloneqq \left[1, \iota(g_1),\dotsc,\iota(g_n)\right]
+        \end{gather*}
+        die gewünschte Eigenschaft, denn auf den Erzeugern $g_i$ gilt
+        \begin{gather*}
+          \iota(g_i) 
+          = \frac{\iota(g_i)}{1} 
+          = \left(\frac{X_i}{X_0}\right)\circ\lambda
+          = g_i\circ\lambda
+          = \lambda^*(g_i)
+        \end{gather*}
+        Sie ist nicht konstant, da die
+        $g_i$ nicht alle konstant sind und $\iota$ injektiv ist, also
+        die $\iota(g_i)$ ebenfalls nicht alle konstant sind. Und sie
+        ist offensichtlich rational sowie über $\K$ definiert.
+      \item[Eindeutigkeit]
+        Sei $\tlambda\coloneqq[f_0,\dotsc,f_n]$ eine weitere
+        Abbildungen mit den gesuchten Eigenschaften.
+        Dann gilt
+        \begin{gather*}
+          \frac{f_i}{f_0}
+          %= \left(\frac{X_i}{X_0}\right)\circ\tlambda 
+          = g_i\circ\tlambda
+          = \tlambda^*(g_i) 
+          \overset{\text{Annahme}}{=}
+          \iota(g_i)
+        \end{gather*}
+        also 
+        \begin{gather*}
+          \tlambda
+          \coloneqq \left[ f_0,f_1,\dotsc,f_n \right]
+          = \left[ 1, \frac{f_1}{f_0}, \dotsc, \frac{f_n}{f_0}\right]
+          = \left[ 1, \iota(g_1), \dotsc, \iota(g_n) \right]
+          \eqqcolon \lambda
+        \end{gather*}
+    \end{description}
+  \end{proof}
+\end{Lemma}
+
+\begin{Satz}[Kategorienäquivalenz]\label{kategorienaequivalenz}
+  Die Aussagen von oben lassen sich zu einer Kategorienantiäquivalenz
+  zwischen der Kategorie der glatten Kurven und der Kategorie der
+  Körpererweiterungen $\K'$ über $\K$ mit Transzendenzgrad 1 und
+  $\K'\cap\algK=\K$ verallgemeinern:
   \begin{align*}
     C/K &\Longrightarrow \K(C)\\
     \phi\colon C_1\to C_2 &\Longrightarrow \phi^*\colon\K(C_2)\to\K(C_1)
   \end{align*}
+  \cite[siehe][Corollary I.6.11]{hartshorne} und
+  \cite[siehe][Remark II.2.5]{silverman}.
   %% Körpererweiterungszeugs: siehe S.24–25
-\end{Korollar}
+\end{Satz}
 
+%---
+
+\subsection{Verzweigungsindex}
 \begin{Definition}[Verzweigungsindex]\label{verzweigungsindex}
   Sei $\phi\colon C_1\to C_2$ eine nicht-konstante Abbildung zwischen
   glatten Kurven.
@@ -179,7 +235,46 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
     \end{enumerate}
     \begin{proof}
       \cite[siehe][Proposition II.2.6]{silverman}
+      
+      % zu \emph{ii)}: Nach Definition des Separabilitätsgrades gilt
+      % (wir identifizieren $\phi^*(\algK(C_2))$ mit $\algK(C_2)$)
+      % \begin{gather*}
+      %   \degs(\phi) 
+      %   \coloneqq \degs\left( \algK(C_1)/\algK(C_2) \right)
+      %     \coloneqq
+      %   \#\Hom_{\algK(C_2)}\left( \algK(C_1), \overline{\algK(C_2)} \right)
+      % \end{gather*}
+      % Mit unserer Kategorienantiäquivalenz aus
+      % \autoref{kategorienaequivalenz} erhalten wir zur
+      % $\algK$-Erweiterung $\overline{\algK(C_2)}$ eine glatte Kurve
+      % $C_0$ mit einem Morphismus $\lambda\colon C_0\to C_2$, für das
+      % $\lambda^*$ die Erweiterung $\algK(C_2)\to\overline{\algK(C_2)}$
+      % ist (s. \autoref{erweiterungzuratabb}).
+      % $\Hom_{\algK(C_2)}(\algK(C_1), \overline{\algK(C_2)})$
+      % wird zur Menge der Homomorphismen $\psi$, die über $\phi$ wie
+      % folgt faktorisieren:
+      % \begin{center}
+      %   \begin{tikzcd}
+      %     C_0
+      %     \arrow[r, "\psi"{below}]
+      %     \arrow[rr, "\lambda"{below}, bend left=30]
+      %     & C_1
+      %     \arrow[r, "\phi"{below}]
+      %     & C_2
+      %     \\
+      %     \algK(C_0)=\overline{\algK(C_2)}
+      %     \arrow[from=r, "\psi^*"{above}]
+      %     \arrow[from=rr, "\lambda^*"{above}, bend left=30]
+      %     & \algK(C_1)
+      %     \arrow[from=r, "\phi^*"{above}]
+      %     & \algK(C_2)
+      %   \end{tikzcd}
+      % \end{center}
+      % Sei $P\in C_2$. Dann 
+
     \end{proof}
+
+
 \end{Satz}
 
 % ---
