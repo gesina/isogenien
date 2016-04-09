@@ -53,12 +53,14 @@
 \DeclareMathOperator{\Pic}{Pic} % Picard Gruppe
 \renewcommand{\div}{\operatorname{div}}
 \DeclareMathOperator{\Char}{char} % Charakteristik
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\Aut}{Aut}
-\newcommand{\Id}{\mathrm{id}}
+\DeclareMathOperator{\Hom}{Hom} % Homomorphismenmenge
+\DeclareMathOperator{\End}{End} % Endomorphismenmenge
+\DeclareMathOperator{\Aut}{Aut} % Automorphismenmenge
+\newcommand{\Id}{\mathrm{id}} % Identitätsabbildung
 \DeclareMathOperator{\im}{im} % image
 \newcommand{\tlambda}{\tilde\lambda} % alternative Abbildung \lambda
+\newcommand{\F}{F} % endliche Untergruppe
+\DeclareMathOperator{\genus}{genus} % Kurvengeschlecht
 
 % TITEL
 
@@ -168,8 +170,25 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 \begin{Lemma}
   Für eine Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$
   ist $[m]\colon E\to E$ nicht konstant, d.\,h. $[m]\neq[0]$.
-  \begin{proof}
+  \begin{proof}[Beweisskizze]
     \cite[siehe][Proposition 4.2 (a)]{silverman}
+    
+    Man zeigt (im Fall $\Char(\algK)\neq2$) mit der Duplikationsformel
+    \cite[Group Law Algorithm III.2.3(d)]{silverman},
+    dass es nur endlich viele Punkte $P\in E$ mit $P+P=O$ geben kann,
+    was zeigt, dass $[2]$ nicht konstant ist.
+    Für $\Char(\algK)=2$ konstruiert man mithilfe der
+    Triplikationsformel \cite[Exercise III.3.2]{silverman}
+    einen Punkt $O\neq P\in E$ der Ordnung 3, was
+    ebenfalls $[2]\neq[0]$ zeigt.
+
+    Den Fall ungerader $m\in\Z$ zeigt man mit der Konstruktion eines 
+    Punktes $O\neq P\in E$, für den $P+P=O$ ist. Entsprechend ist dann
+    $[2m+1](P)=[m]\circ[2](P)+P=P\neq O$.
+    
+    Alle anderen Fälle ergeben sich wegen 
+    $[m\cdot n]=[m]\circ[n]$ aus dem Fall für $[2]$ und dem für ungerade
+    $m\in\Z$.
   \end{proof}
 \end{Lemma}
 
@@ -538,39 +557,128 @@ Quotientenbildung auf der Punktegruppe einer Elliptischen Kurve wieder
 die Struktur einer Elliptischen Kurve erhält.
 
 \begin{Satz}
-  Sei $E$ eine Elliptische Kurve und $F\subset E$ eine endliche
+  Sei $E$ eine Elliptische Kurve und $\F\subset E$ eine endliche
   Untergruppe.
   Dann gibt es eine eindeutige Elliptische Kurve $E'$ und eine
   separable Isogenie $\phi\colon E\to E'$, so dass
   \begin{gather*}
-    \ker\phi = F
+    \ker\phi = \F \;.
   \end{gather*}
-  $E'$ wird auch $E/F$ geschrieben.
+  $E'$ wird auch $E/\F$ geschrieben.
 
-  Ist $E$ definiert über $K$ und $F$ invariant bzgl. der Galoisgruppe
+  Ist $E$ definiert über $K$ und $\F$ invariant bzgl. der Galoisgruppe
   von $\algK/\K$, so können $E'$ und $\phi$ definiert über $K$ gewählt
   werden.
   \begin{proof}
     Zuerst benötigen wir einen geeigneten Unterkörper von $\algK(E)$
     als Funktionenkörper vom gesuchten $E'$.
     Wie in \autoref{galois}\,\emph{iii)} erhalten wir zu jedem Punkt
-    $T\in F$ einen Automorphismus $\tau_T^*$ von $\algK(E)$.
+    $T\in \F$ einen Automorphismus $\tau_T^*$ von $\algK(E)$.
     Bezeichne die Untergruppe dieser Automorphismen mit 
-    $\Psi\coloneqq\{\tau_T^* | T\in F\}$ und
-    betrachte den Fixkörper $\algK(E)^\Psi$.    
-    $\algK(E)/\algK(E)^\Psi$ ist eine Galoiserweiterung und wir
-    erhalten dank der Kategorienäquivalenz aus
-    \autoref{kategorienaequivalenz} eine eindeutige glatte Kurve
-    $C/\algK$ zu $\algK(E)^\Psi$ und einen endlichen Morphismus
-    $\phi\colon E\to C$ zur Erweiterung $\algK(E)^\Psi\to\algK(E)$
-    mit $\phi^*(\algK(C))=\algK(E)^\Psi$.
+    \begin{gather*}
+      \Phi\coloneqq\left\{ \tau_T^* \;\middle|\; T\in \F \right\}
+    \end{gather*}
+    und betrachte den Fixkörper $\algK(E)^\Phi$.    
+    $\algK(E)/\algK(E)^\Phi$ ist eine Galoiserweiterung mit
+    Galoisgruppe $\Phi$ und wir erhalten dank der Kategorienäquivalenz
+    aus \autoref{kategorienaequivalenz} eine eindeutige glatte Kurve
+    $C/\algK$ zu $\algK(E)^\Phi$ und einen endlichen Morphismus
+    $\phi\colon E\to C$ zur Erweiterung $\algK(E)^\Phi\to\algK(E)$
+    mit $\phi^*(\algK(C))=\algK(E)^\Phi$.
     
     Es bleibt zu zeigen, dass $\phi$ separabel ist, und, dass $C$ eine
     Elliptische Kurve ist, d.\,h. Geschlecht 1 hat.
     Letzteres können wir mithilfe der Hurwitz'schen Formel
     \autoref{hurwitz} zeigen.
+
+    \begin{description}
+    \item[$\phi$ unverzweigt]
+      Wir werden zeigen, dass $\phi$ unverzweigt ist. Dies impliziert
+      bereits separabel, wie wir sehen werden.
+
+      Es gilt wegen $e_\phi(P)\geq1$ für alle $Q\in E$ die Ungleichung
+      % Für Unverzweigtheit muss gelten, dass $e_\phi(P)=1$ für alle
+      % $P\in C$, was mit \autoref{sepgrad}\,\emph{i)}, $e_\phi(P)\geq1$
+      % und $\#\Phi=\deg(\phi)$ (nach Galoistheorie) äquivalent zu
+      % folgender Aussage ist:
+      % Für alle $Q\in E$ gilt
+      \begin{gather*}
+        \#\phi^{-1}(Q)
+        \leq
+        \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P)
+        \overset{\text{\autoref{sepgrad}\,\emph{i)}}}{=}
+        \deg(\phi)
+        \overset{\text{Galois}}{=}
+        \#\Phi
+        =\# \F
+      \end{gather*}
+      und Gleichheit gilt genau dann, wenn $e_\phi(P)=1$ für alle
+      $P\in C$, also wenn $\phi$ unverzweigt ist.
+      Es ist also zu zeigen, dass $\#\phi^{-1}(Q)\geq\#\Phi=\# \F$ für alle 
+      $Q\in E$.
+      % Nachdem wegen \autoref{sepgrad}\,\emph{i)} und $e_\phi(P)\geq1$
+      % gilt, dass $\#\phi^{-1}(Q)\leq\deg(\phi)$ ist,
+      % bleibt zu zeigen, dass $\#\phi^{-1}(Q)\geq\#\Phi$ für alle 
+      % $Q\in E$ gilt.
+
+      Sei $T\in\F$, dann ist $\tau_T^*\in\Phi$ die Identität auf
+      $\phi^*(\algK(C))=\algK(E)^\Phi$. Daraus folgt
+      \begin{gather*}
+        f(\phi(P+T))
+        = f(\phi\circ\tau_T(P)) 
+        = \left( \tau_T^*(\phi^*(f)) \right)(P)
+        %= (\tau_T^*(\underset{\mathrlap{\in\phi^*(\algK(C))}}{\phi^*(f)}))(P)
+        = \phi^*(f)(P)
+        = f(\phi(P))
+      \end{gather*}
+      für alle $P\in E$ und $f\in\algK(C)$.
+      Also $\phi(P) = \phi(P+T)$ für alle $P\in E$.
+      Für ein $Q\in C$ und ein beliebiges $P\in\phi^{-1}(Q)$ gilt
+      deshalb
+      \begin{gather*}
+        \phi^{-1}(Q) 
+        \supset \left\{ P+T \;\middle|\; T\in\Phi \right\}        
+      \end{gather*}
+      Nachdem $P+T\neq P+T'$ für $T\neq T'\in\F$, gilt für die
+      Kardinalitäten
+      \begin{gather*}
+        \#\phi^{-1}(Q) 
+        \geq \#\left\{ P+T \;\middle|\; T\in\Phi \right\}
+        = \#\F
+      \end{gather*}
+      Damit ist $\deg(\phi)=\phi^{-1}(Q)$ für alle $Q\in E$ und
+      $\phi$ ist unverzweigt.
+
+    \item[$\phi$ separabel]
+      Es gilt für alle außer endlich viele $Q\in E$ nach
+      \autoref{sepgrad}\,\emph{ii)}
+      \begin{gather*}
+        \degs(\phi) 
+        \overset{\text{\autoref{sepgrad}\emph{ii)}}}{=}
+        \#\phi^{-1}(Q) 
+        \overset{\text{unverzw.}}{=} 
+          \deg(\phi)
+      \end{gather*}
+      und nachdem $E$ unendlich viele Punkte hat (siehe Beweis zu
+      \autoref{galois}\,\emph{i)}), ist $\degs(\phi)=\deg(\phi)$, also
+      $\phi$ separabel.
+    \end{description}
     
-    
+  \item[$C$ Elliptische Kurve]
+    Nachdem $\phi\colon E\to C$ ein separabler Morphismus glatter
+    Kurven ist, kann die Hurwitz'sche Formel \autoref{hurwitz}
+    angewendet werden ($g_1=1$, da $E$ Elliptische Kurve, $g_2$ ist das
+    gesuchte Geschlecht von $C$):
+    \begin{align*}
+      0
+      = 2\underset{=1}{g_1}-2
+      &\overset{\text{Hurwitz}}{\geq}
+      \underbrace{\deg(\phi)}_{>0} (2g_2-2) 
+      + \sum_{\mathclap{P\in C_1}}\underbrace{(e_P(\phi)-1)}_{=0}
+       \geq 0\\
+    \end{align*}
+    Also ist das Geschlecht von $C$ gleich $g_2=1$ und $C$ ist
+    Elliptische Kurve.
   \end{proof}
 
 \end{Satz}
