@@ -167,7 +167,7 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
   sie haben komplexe Multiplikation.
 \end{Beispiel}
 
-\begin{Lemma}
+\begin{Lemma}\label{additionnichtkonstant}
   Für eine Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$
   ist $[m]\colon E\to E$ nicht konstant, d.\,h. $[m]\neq[0]$.
   \begin{proof}[Beweisskizze]
@@ -193,11 +193,43 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 \end{Lemma}
 
 \begin{Korollar}
-  Für Elliptische Kurven $E_1$, $E_2$ ist $\Hom(E_1,E_2)$ ein
-  torsionsfreier $\Z$-Modul, d.\,h. für jede Isogenie
-  $\phi\in\Hom(E_1,E_2)$ ist $[m]\circ\phi\neq[0]$ für $m\in\Z\setminus\{0\}$.
-    \begin{proof}
+  Seien $E$, $E_1$, $E_2$ Elliptische Kurven. Dann ist $\Hom(E_1,E_2)$
+  ein torsionsfreier $\Z$-Modul, d.\,h. für jede Isogenie
+  $\phi\in\Hom(E_1,E_2)$ ist $[m]\circ\phi\neq[0]$ für
+  $m\in\Z\setminus\{0\}$.
+
+  Außerdem ist $\End(E,E)$ nullteilerfrei und hat Charakteristik 0.
+  (Beachte: $\End(E,E)$ ist nicht immer kommutativ!).
+  \begin{proof}
     \cite[siehe][Proposition 4.2 (b)]{silverman}
+    
+    Angenommen es gäbe ein $\phi\in\Hom(E_1,E_2)$ mit $m$-Torsion für
+    ein $m\in\Z\setminus0$, d.\,h. 
+    \begin{gather*}
+      [0]
+      =\underbrace{\phi+\dotsc+\phi}_{m-\text{mal}}
+      = [m]\circ\phi
+    \end{gather*}
+    ($[0]\colon E_1\to E_2$ hier die konstante Isogenie).
+    Nachdem der Grad von Körpererweiterungen multiplikativ ist, ist es
+    per Definition auch der von Morphismen:
+    \begin{gather*}
+      0 \eqqcolon \deg([0]) = \deg([m])\cdot\deg(\phi)
+    \end{gather*}
+    Nach \autoref{additionnichtkonstant} ist $[m]$ nicht konstant,
+    also auch $\deg([m])>0$ für $m\neq0$. Daher muss $\deg(\phi)=0$
+    und somit $\phi=[0]$ bereits konstant gewesen sein.
+
+    Daraus folgt bereits, dass $\End(E)$ Charakteristik 0 hat.
+    Außerdem gilt wieder mit der Multiplikativität der Grade für zwei
+    Abbildungen $\phi,\psi\in\End(E)$
+    \begin{gather*}
+      \phi\circ\psi=[0]
+      \qquad\Rightarrow\qquad
+      0 = \deg(\phi\circ\psi) = \deg(\phi)\cdot\deg(\psi)
+    \end{gather*}
+    also wieder entweder $\phi$ oder $\psi$ konstant.
+    Damit ist $\End(E)$ nullteilerfrei.
   \end{proof}
 \end{Korollar}
 
