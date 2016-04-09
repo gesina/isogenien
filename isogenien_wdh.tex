@@ -376,6 +376,28 @@ bilden.
     \end{proof}
   \end{Satz}
 
+
+  Eine weiterer wichtiger Zusammenhang ist die Hurwitz'sche Formel für
+  das Geschlecht von Kurven.
+
+  \begin{Satz}[Hurwitz]\label{hurwitz}
+    Für einen separablen Morphismus $\phi\colon C_1\to C_2$ von
+    glatten Kurven 
+    je mit Geschlecht $g_i$ gilt
+    \begin{gather*}
+      2g_1-2
+      \geq
+      \deg(\phi)\cdot(2g_2-2) + \sum_{\mathclap{P\in C_1}}(e_P(\phi)-1)
+    \end{gather*}
+    über einem Körper $\K$ mit 
+    $\Char(\K)\nmid e_P(\phi)$ für alle $P\in C_1$ 
+    gilt Gleichheit.
+    \begin{proof}
+      \cite[siehe][Theorem II.5.9]{silverman}
+    \end{proof}
+  \end{Satz}
+
+
   %%% Local Variables:
   %%% mode: latex
   %%% TeX-master: "isogenien_ausarbeitung"

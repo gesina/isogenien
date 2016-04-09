@@ -52,6 +52,7 @@
 \DeclareMathOperator{\Div}{Div} % Divisorengruppe
 \DeclareMathOperator{\Pic}{Pic} % Picard Gruppe
 \renewcommand{\div}{\operatorname{div}}
+\DeclareMathOperator{\Char}{char} % Charakteristik
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
@@ -60,6 +61,7 @@
 \newcommand{\tlambda}{\tilde\lambda} % alternative Abbildung \lambda
 
 % TITEL
+
 \titlehead{Seminar Elliptische Kurven \\
   von Prof. Kerz,
   SS2016, Universität Regensburg}
@@ -556,6 +558,19 @@ die Struktur einer Elliptischen Kurve erhält.
     Bezeichne die Untergruppe dieser Automorphismen mit 
     $\Psi\coloneqq\{\tau_T^* | T\in F\}$ und
     betrachte den Fixkörper $\algK(E)^\Psi$.    
+    $\algK(E)/\algK(E)^\Psi$ ist eine Galoiserweiterung und wir
+    erhalten dank der Kategorienäquivalenz aus
+    \autoref{kategorienaequivalenz} eine eindeutige glatte Kurve
+    $C/\algK$ zu $\algK(E)^\Psi$ und einen endlichen Morphismus
+    $\phi\colon E\to C$ zur Erweiterung $\algK(E)^\Psi\to\algK(E)$
+    mit $\phi^*(\algK(C))=\algK(E)^\Psi$.
+    
+    Es bleibt zu zeigen, dass $\phi$ separabel ist, und, dass $C$ eine
+    Elliptische Kurve ist, d.\,h. Geschlecht 1 hat.
+    Letzteres können wir mithilfe der Hurwitz'schen Formel
+    \autoref{hurwitz} zeigen.
+    
+    
   \end{proof}
 
 \end{Satz}
