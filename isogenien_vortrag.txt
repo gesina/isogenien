@@ -1,0 +1,25 @@
+# Wiederholung:
+- Kategorienantiäquivalenz
+  (glatte Kurven) <=> (Körpererweiterungen über K mit Transzendenzgrad 1 und …)
+- Gruppeniso
+  Pic^0 <–> geometrische Punktgruppe
+- Addition/Subtraktion/Translation von Punkten sind Morphismen von Kurven
+- Aussagen zum Verzweigungsindex:
+  * Summenformel
+  * Anzahl von Punkten im Urbild eines Punktes
+- Hurwitz'sche Formel
+
+
+# Behandelte Definitionen/Aussagen:
+- Definition Isogenie, Kategorie der Elliptischen Kurven
+  (Hom, End, Aut)
+- Multiplikationsabbildung:
+  * Definition
+  * Beweisskizze [m] nicht konstant
+  * Aussage Hom(E_1,E_2) torsionsfrei (ohne Beweis)
+- Definition Torsions-Untergruppen
+- Beweis Isogenien sind Gruppenhoms
+- Zusammenhänge Elliptische Kurve – Funktionenkörper:
+  Beweis Isomorphie ker(\phi) <–> Aut(K(E_1)/K(E_2))
+(- Äquivalent zum Homomorphiesatz auf Ellipt. K., falls zeitl. OK)
+- „Quotientenrechnung“ auf Elliptischen Kurven
