@@ -77,32 +77,54 @@
 
 \section{Vorwort}
 
-\subsection{Nomenklatur}
-\begin{description}[labelwidth=1.5cm, font=\normalfont, itemsep=0pt]
-  \item[$\K$] Körper
-  \item[$\algK$] algebraischer Abschluss des Körpers $K$
-  \item[${\K[\Xn]}$] $\K[X_0,\dotsc,X_n]$
-  \item[$\P^n$] projektiver Raum der Dimension $n$
-  \item[$V(I)$] projektive Varietät erzeugt vom homogenen Ideal $I$
-  \item[$I(V)$] homogenes Ideal $I$, das die projektive Varietät $V$ erzeugt
-  \item[$V/K$] projektive Varietät definiert über $\K$ (d.\,h. $I(V)$
-    ist erzeugt von Polynomen in $\K(X)$
-  \item[$P\in V$] Punkt der projektiven Varietät $V$ oder 
-    das Maximalideal 
-    \begin{gather*}
-      M_P\coloneqq\left\{f\in\algK[V]\;\middle\vert\;f(P)=0\right\}
-      \subset \algK[V]
-    \end{gather*}
-  \item[{$\algK[V]$}] affiner Koordinatenring der projektiven Varietät
-    $V$ ($\algK[V]\coloneqq \algK[\Xn]/I(V)$)
-  \item[{$\algK(V)$}] Quotientenkörper von $\algK[V]$
-  \item[$C$] projektive Kurve
-  \item[$\ord_P(f)$] Ordnung von $f\in\algK(C)$ bzgl. der diskreten
-    Bewertung auf $\algK[C]_P$
-\end{description}
+% \subsection{Nomenklatur}
+% \begin{description}[labelwidth=1.5cm, font=\normalfont]
+%   \item[$\K$] Körper
+%   \item[$\algK$] algebraischer Abschluss des Körpers $K$
+%   \item[${\K[\Xn]}$] $\K[X_0,\dotsc,X_n]$
+%   \item[$\P^n$] projektiver Raum der Dimension $n$
+%   \item[$V(I)$] projektive Varietät erzeugt vom homogenen Ideal $I$
+%   \item[$I(V)$] homogenes Ideal $I$, das die projektive Varietät $V$ erzeugt
+%   \item[$V/K$] projektive Varietät definiert über $\K$ (d.\,h. $I(V)$
+%     ist erzeugt von Polynomen in $\K(X)$
+%   \item[$P\in V$] Punkt der projektiven Varietät $V$ oder 
+%     das Maximalideal 
+%     \begin{gather*}
+%       M_P\coloneqq\left\{f\in\algK[V]\;\middle\vert\;f(P)=0\right\}
+%       \subset \algK[V]
+%     \end{gather*}
+%   \item[{$\algK[V]$}] affiner Koordinatenring der projektiven Varietät
+%     $V$ ($\algK[V]\coloneqq \algK[\Xn]/I(V)$)
+%   \item[{$\algK(V)$}] Quotientenkörper von $\algK[V]$
+%   \item[$C$] projektive Kurve
+%   \item[$\ord_P(f)$] Ordnung von $f\in\algK(C)$ bzgl. der diskreten
+%     Bewertung auf $\algK[C]_P$
+% \end{description}
 
-\subsection{Motivation}
-Im Folgenden werden wir eine bestimmte
+$\K$ sei ab jetzt ein Körper, $\algK$ sein algebraischer Abschluss, 
+$\P^n\coloneqq\P^n(\algK)$ der $n$-dimensionale projektive Raum über $\K$ und
+$\P^n(\K)$ die $\K$-rationalen Punkte von $\P^n$.
+
+Im Folgenden ist mit Kurve immer eine projektive Varietät der
+Dimension 1 gemeint und mit Elliptische Kurve eine glatte Kurve $E$ vom
+Geschlecht $g=1$ zusammen mit einem fixen Punkt $O\in E$.
+
+Wir sagen, die Kurve $C\subset\P^n(\algK)$ ist über $\K$ definiert,
+falls ihr erzeugendes Ideal $I(C)\subset\algK[X,Y]$ von
+Elementen in $\K[X,Y]$ erzeugt ist, geschrieben $C/\K$. Beachte, dass
+immer $C/\algK$ gilt. 
+
+Für $C/\K$ ist $\K[C]\coloneqq\K[X,Y]/I(C)$ 
+und $\K(C)$ der zugehörige Quotientenkörper, genannt
+der Funktionenkörper von $C$.
+Beachte, dass $I(C)$ prim ist, da $C$ eine Varietät ist.
+
+Wir assoziieren zu jedem Punkt $P\in C\subset\P^n$ einer Kurve $C$
+sein erzeugendes Maximalideal 
+\begin{gather*}
+  M_P\coloneqq\left\{f\in\algK[C]\;\middle\vert\;f(P)=0\right\}
+  \subset \algK[C]
+\end{gather*}
 
 \input{isogenien_wdh}
 
@@ -162,9 +184,9 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
        \underbrace{P+P+\dotsb+P}_{m\text{-mal}}
   \end{align*}
   ein Morphismus und, da $[m](O)=O$, eine Isogenie.
-  Zu Elliptische Kurven über Körpern von Charakteristik 0, deren
-  Endomorphismen nicht allein diese Multiplikationen sind, sagt man,
-  sie haben komplexe Multiplikation.
+  Hat eine Elliptische Kurve über einem Körper von Charakteristik 0
+  mehr Endomorphismen als nur diese Multiplikationen, sagt man,
+  sie hat komplexe Multiplikation.
 \end{Beispiel}
 
 \begin{Lemma}\label{additionnichtkonstant}
@@ -204,7 +226,7 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
     \cite[siehe][Proposition 4.2 (b)]{silverman}
     
     Angenommen es gäbe ein $\phi\in\Hom(E_1,E_2)$ mit $m$-Torsion für
-    ein $m\in\Z\setminus0$, d.\,h. 
+    ein $m\in\Z\setminus\{0\}$, d.\,h. 
     \begin{gather*}
       [0]
       =\underbrace{\phi+\dotsc+\phi}_{m-\text{mal}}
@@ -225,10 +247,10 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
     Abbildungen $\phi,\psi\in\End(E)$
     \begin{gather*}
       \phi\circ\psi=[0]
-      \qquad\Rightarrow\qquad
+      \qquad\Longrightarrow\qquad
       0 = \deg(\phi\circ\psi) = \deg(\phi)\cdot\deg(\psi)
     \end{gather*}
-    also wieder entweder $\phi$ oder $\psi$ konstant.
+    also ist entweder $\phi$ oder $\psi$ konstant.
     Damit ist $\End(E)$ nullteilerfrei.
   \end{proof}
 \end{Korollar}
@@ -239,6 +261,7 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
   \begin{gather*}
     E[m] \coloneqq \left\{ P\in E\;\middle|\; [m](P)=O\right\}
     = E[-m]
+    \overset{\autoref{additionnichtkonstant}}{\neq}E
   \end{gather*}
   Die Torsionsuntergruppe von $E$ ist die Vereinigung
   \begin{gather*}
@@ -270,7 +293,7 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
   \begin{alignat*}{3}
     &\kappa_1\colon&
     E_1&\overset\sim\longto \Pic^0(E_1)
-    &P &\longmapsto \overline{(P)-(O)}\\
+    &\qquad P &\longmapsto \overline{(P)-(O)}\\
     &\kappa_2\colon&
     E_2&\overset\sim\longto \Pic^0(E_2)
     &P &\longmapsto \overline{(P)-(O)}\\

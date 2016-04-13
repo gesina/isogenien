@@ -1,8 +1,5 @@
 \section{Wiederholung}
 \subsection{Morphismen von Kurven}
-Im folgenden ist mit Kurve immer eine projektive Varietät der
-Dimension 1 gemeint und mit Elliptische Kurve eine glate Kurve $E$ vom
-Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
 
 \begin{Definition}[Definiertheit]
   Sei $C$ eine Kurve, $P\in C$ und $\algK[C]_P$ die Lokalisierung
@@ -12,7 +9,7 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
     \ord_P\colon \algK[C]_P &\longto \N_0 \cup \{\infty\} \\
     f &\mapsto \max\left\{d\in\Z\;\middle|\; f\in M_P^d \right\}
   \end{align*}
-  die diskrete Bewertung auf $\algK[C]$ bzw. durch kanonische
+  die diskrete Bewertung auf $\algK[C]_P$ bzw. durch kanonische
   Erweiterung
   \begin{align*}
     \ord_P\colon \algK(C) &\longto \Z \cup \{\infty\} \\
@@ -43,11 +40,11 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   wobei für jeden Punkt $P\in V_1$, 
   in dem alle $f_i$ definiert sind, % f_i in P auswertbar
   $(f_0(P),\dotsc,f_n(P))\neq0$. % Wohldefiniertheit
-  
   Solch ein $\phi$ heißt definiert über $\K$,
-  falls $f_i\in\K(V_1)$. Beachte hierbei die Invarianz
-  bzgl. Multiplikation mit Einheiten $\lambda$, denn
-  $[f_0,\dotsc,f_n]=[\lambda f_0,\dotsc,\lambda f_n]\in\P^n$.
+  falls $f_i\in\K(V_1)$. 
+  % Beachte hierbei die Invarianz
+  % bzgl. Multiplikation mit Einheiten $\lambda$, denn
+  % $[f_0,\dotsc,f_n]=[\lambda f_0,\dotsc,\lambda f_n]\in\P^n$.
 
   Eine rationale Abbildung $\phi$ heißt regulär in $P\in V_1$,
   falls es ein $g\in\algK(V)$ gibt, sodass
@@ -55,7 +52,9 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   und $(gf_0(P),\dotsc,gf_n(P))\neq0$.
   Beachte hierbei, 
   dass für ein in $P$ definiertes $g\in\algK(V)$ mit $g(P)\neq0$ gilt
-  $[f_0,\dotsc,f_n]=[gf_0,\dotsc, gf_n]\in\P^n$.
+  $[f_0,\dotsc,f_n]=[gf_0,\dotsc, gf_n]\in\P^n$
+  (denn $[x_0,\dotsc,x_n]=[\lambda x_0,\dotsc,\lambda x_n]\in\P^n$ für
+  $\lambda\in\algK$).
   
   Ein Morphismus von projektiven Varietäten ist eine rationale
   Abbildung $\phi\colon V_1\to V_2$, die in allen $P\in V_1$ regulär
@@ -74,8 +73,8 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
     $t\in\algK(C)$ von $M_P$ gilt mit 
     $r\coloneqq\min_{0\leq i\leq n}\{\ord_Pf_i\}$,
     dass $[t^{-r}f_0,\dotsc,t^{-r}f_n]$ regulär in $P$ ist.
-    (Verwende die Tatsache, dass $g\in C$ regulär in $P$ ist
-    genau dann, wenn $\ord_P(g)\geq0$.)
+    (Verwende die Tatsache, dass $g\in C$ genau dann regulär in $P$
+    ist, wenn $\ord_P(g)\geq0$.)
   \end{proof}
 \end{Lemma}
 
@@ -282,7 +281,7 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
 \subsection{Divisorengruppe}
 \begin{Definition}[Divisorengruppe]
   Für eine Kurve $C$ wird die von den Punkten von $C$ erzeugte, freie
-  abelsche Gruppe als die Gruppe $\Div(C)$ bezeichnet und ihre
+  abelsche Gruppe mit $\Div(C)$ bezeichnet und ihre
   Elemente heißen Divisoren. Ein Punkt $P$ erhält als Divisor die
   Schreibweise $(P)$. 
   Der Grad eines Divisors $D=\sum_{P\in C}n_P\cdot(P)$ ist definiert als
@@ -299,12 +298,12 @@ Geschlecht 1 zusammen mit einem fixen Punkt $O\in E$.
   $\div\colon\algK(C)^*\to\Div(C)$ ist ein Gruppenhomomorphismus,
   d.\,h. $\div(f\cdot g)=\div(f)+\div(g)$,
   mit Kern $\algK^*$.
-  Eine Element im Bild von $\div$ wird prinzipal genannt.
+  Ein Element im Bild von $\div$ wird prinzipal genannt.
   
   Die Picard-Gruppe $\Pic(C)$ von $C$ ist der Quotient
   $\Div(C)/\div(\algK(C)^*)$ der Divisorengruppe über der Untergruppe
-  der prinzipalen Elemente. Wir definieren 
-  $(P)\sim(Q)\Leftrightarrow (P)-(Q)=\div(f)$ für ein $f\in\algK(C)^*$.
+  der prinzipalen Elemente. Wir schreiben 
+  $(P)\sim(Q):\Leftrightarrow (P)-(Q)=\div(f)$ für ein $f\in\algK(C)^*$.
 
   Wir definieren die Grad-0-Untergruppe $\Div^0(C)\subset\Div(C)$ als
   \begin{gather*}
@@ -324,7 +323,8 @@ Elliptischen Kurve $E$ mit einer geometrischen Addition eine Gruppe
 bilden.
 
 \begin{Satz}\label{gruppenaequivalenz}
-  Eine Elliptische Kurve sei als Gruppe ihrer Punkte aufgefasst.
+  Eine Elliptische Kurve sei als Gruppe ihrer Punkte aufgefasst
+  mit der geometrischen Addition.
   \begin{enumerate}[label=\roman*)]
   \item 
     Für eine Elliptische Kurve $E$ mit neutralem Element $O\in E$ gibt
