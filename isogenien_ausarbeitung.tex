@@ -63,7 +63,6 @@
 \DeclareMathOperator{\genus}{genus} % Kurvengeschlecht
 
 % TITEL
-
 \titlehead{Seminar Elliptische Kurven \\
   von Prof. Kerz,
   SS2016, Universität Regensburg}
@@ -540,13 +539,69 @@ Nutzen sein kann.
 \end{proof}
 \end{Satz}
 
-Der nächste Satz macht eine Aussage darüber, wie man Isogenien anhand
-ihrer Kerne charakterisieren kann.
-Zuvor benötigen wir noch ein Lemma, das uns zu einer Körpererweiterung
-von Funktionenkörpern eine eindeutige Isogenie liefert.
+Mit dem Zusammenhang von Kernen von Isogenien mit
+Automorphismengruppen von Körpererweiterungen sowie der Aussage zu
+galoisschen Isogenien können wir im Folgenden die Eigenschaften von
+Isogenien als Homomorphismen weiter untersuchen.
+Dazu vorerst eine Erinnerung an den Homomorphiesatz.
 
+\begin{Bemerkung}[Homomorphiesatz]
+  Der Homomorphiesatz besagt, dass es für
+  einen Gruppenhomomorphismus $\alpha\colon G\to H$ einen eindeutigen
+  Isomorphismus 
+  $\bar\alpha\colon G/\ker\varphi\cong \im\varphi\subset H$ gibt, bzw.
+  es kommutiert das Diagramm
+  \begin{center}
+    \begin{tikzcd}
+      G\arrow[r,"\alpha"]\arrow[d,"\text{proj}"{left}]&H\\
+      G/\ker(\alpha)\arrow[ur, dashed, "\exists!\; \bar\alpha"{swap}]
+    \end{tikzcd}
+  \end{center}
+  Also gibt es für Homomorphismen $\alpha\colon E_1\to E_2$,
+  $\beta\colon E_1\to E_3$ (mit $E_i$ Gruppen) einen eindeutigen
+  Homomorphismus $\bar\lambda\colon \im(\alpha)\to\im(\beta)$, 
+  sodass das folgende Diagramm kommutiert:
+  \begin{center}
+    \begin{tikzcd}[row sep=tiny]
+      & E_1/\ker(\alpha)
+      \arrow[r, "\bar\alpha"{below}, "\sim"{above}]
+      \arrow[dd, "\text{proj}", twoheadrightarrow]
+      & \im(\alpha)\subset E_2 
+      \arrow[dd, dashed, twoheadrightarrow, "\exists!\;\bar\lambda"]
+      \\
+      E_1
+      \arrow[drr, "\beta"{near start, swap}, bend right=40]
+      \arrow[urr, "\alpha"{near start}, bend left=40]
+      \arrow[ur, twoheadrightarrow]
+      \arrow[dr, twoheadrightarrow]
+      \\
+      ~ & E_1/\ker(\beta)
+      \arrow[r, "\bar\beta"{below}, "\sim"{above}]
+      & \im(\beta)\subset E_3
+    \end{tikzcd}
+    \hfill
+    in kurz
+    \hfill
+  \begin{tikzcd}
+      E_1
+      \arrow[r, "\alpha"]
+      \arrow[dr, "\beta"{swap}]
+      & \im(\alpha)
+      \arrow[d, "\exists!\;\bar\lambda"]
+      \arrow[r, hookrightarrow]
+      & E_2\\
+      & E_3
+    \end{tikzcd}
+  \end{center}
+  In bestimmten Fällen lässt sich $\bar\lambda$ auf einen
+  Homomorphismus $\lambda\colon E_2\to E_3$ erweitern.
+  Sind die $E_i$ Punktgruppen zu Elliptischen Kurven 
+  und $\alpha$, $\beta$ Isogenien, ist $\bar\lambda$ erweiterbar, 
+  wenn $\alpha$ separabel ist. Interessanterweise ist $\lambda$ dann
+  ebenfalls eine Isogenie, wie wir jetzt werden.
+\end{Bemerkung}
 
-\begin{Satz}
+\begin{Satz}\label{homomorphiesatz}
   Sei $\phi\colon E_1\to E_2$ eine separable Isogenie.
   Jede weitere Isogenie $\psi\colon E_1\to E_3$ mit
   \begin{gather*}
@@ -554,62 +609,72 @@ von Funktionenkörpern eine eindeutige Isogenie liefert.
   \end{gather*}
   faktorisiert eindeutig über $\psi$, d.\,h. es gibt eine eindeutige
   Isogenie $\lambda\colon E_2\to E_3$ mit
-  \begin{gather*}
-    \psi = \lambda\circ\phi\;.
-  \end{gather*}
-  \begin{proof}
+  $\psi = \lambda\circ\phi$
+  bzw. das folgende Diagramm kommutiert
+  \begin{center}
+    \begin{tikzcd}
+      E_1
+      \arrow[dr,"\psi"{swap}]
+      \arrow[r,"\phi"]
+      & E_2
+      \arrow[d,"\exists!\,\lambda"]\\
+      & E_3
+    \end{tikzcd}
+  \end{center}
+  \begin{proof}[Beweis von Satz~\autoref{homomorphiesatz}]
     \autoref{galois}\,iv) liefert uns, dass
     $\algK(E_1)/\phi^*(\algK(E_2))$ eine Galoiserweiterung ist mit
-    Galoisgruppe $\Aut_{\phi^*(\algK(E_2))}(\algK(E_1))$.
-    Der Isomorphismus aus \autoref{galois}\,iii) zeigt, dass sie aus
-    Elementen der Form $\tau_T^*$ mit $T\in\ker(\phi)$ besteht.
-    Da nach Voraussetzung $\ker(\phi)\subset\ker(\psi)$ gilt,
-    ist auch
-    \begin{align*}
-      \Aut_{\phi^*(\algK(E_2))}(\algK(E_1))
-      &= \left\{ \tau_T^* \;\middle|\; T\in\ker(\phi) \right\} \\
-      &\subset
+  Galoisgruppe $\Aut_{\phi^*(\algK(E_2))}(\algK(E_1))$.
+  Der Isomorphismus aus \autoref{galois}\,iii) zeigt, dass sie aus
+  Elementen der Form $\tau_T^*$ mit $T\in\ker(\phi)$ besteht.
+  Da nach Voraussetzung $\ker(\phi)\subset\ker(\psi)$ gilt,
+  ist auch
+  \begin{align*}
+    \Aut_{\phi^*(\algK(E_2))}(\algK(E_1))
+    &= \left\{ \tau_T^* \;\middle|\; T\in\ker(\phi) \right\} \\
+    &\subset
       \left\{ \tau_T^* \;\middle|\; T\in\ker(\psi) \right\}
       = \Aut_{\psi^*(\algK(E_3))}(\algK(E_1))
-    \end{align*}
-    D.\,h. die Galoisgruppe fixiert den Unterkörper
-    $\psi^*(\algK(E_3))$, weshalb er nach Galoistheorie ein
-    Unterkörper von $\phi^*(\algK(E_2))$ sein muss.
-    Wir erhalten folgende Kette von Körpererweiterungen
-    \begin{gather*}
-      \psi^*(\algK(E_3)) 
-      \subset \phi^*(\algK(E_2)) 
-      \subset \algK(E_1)
-    \end{gather*}
-    Da $\phi^*$ injektiv und $\phi^*|_{\im(\phi^*)}$ ein
-    Körperisomorphismus ist, erhalten wir eine Körpererweiterung
-    \begin{gather*}
-      \iota\coloneqq 
-      (\phi^*)^{-1} \circ \psi^*
-      \colon \algK(E_3) \longto \algK(E_2)
-    \end{gather*}
-    \autoref{erweiterungzuratabb} liefert jetzt einen Morphismus
-    $\lambda\colon E_3\to E_2$ mit
-    \begin{gather*}
-      \lambda^* = \iota = (\phi^*)^{-1} \circ \psi^*
-      \qquad\text{bzw.}\qquad
-      \phi^*\circ\lambda^* = \psi^*
-    \end{gather*}
-    also wie gesucht $\lambda\circ\phi = \psi$.
-    Es bleibt zu zeigen, dass $\lambda$ eine Isogenie ist:
-    \begin{gather*}
-      \lambda(O) 
-      \overset{\text{$\phi$ Isog.}}{=} \lambda(\phi(O))
-      = \psi(O) 
-      = O
-    \end{gather*}
-  \end{proof}
+  \end{align*}
+  D.\,h. die Galoisgruppe fixiert den Unterkörper
+  $\psi^*(\algK(E_3))$, weshalb er nach Galoistheorie ein
+  Unterkörper von $\phi^*(\algK(E_2))$ sein muss.
+  Wir erhalten folgende Kette von Körpererweiterungen
+  \begin{gather*}
+    \psi^*(\algK(E_3)) 
+    \subset \phi^*(\algK(E_2)) 
+    \subset \algK(E_1)
+  \end{gather*}
+  Da $\phi^*$ injektiv und 
+  $\phi^*\colon\algK(E_2)\to\phi^*(\algK(E_2))$ ein
+  Körperisomorphismus ist, erhalten wir eine Körpererweiterung
+  \begin{gather*}
+    \iota\coloneqq 
+    (\phi^*)^{-1} \circ \psi^*
+    \colon \algK(E_3) \longto \algK(E_2)
+  \end{gather*}
+  \autoref{erweiterungzuratabb} liefert jetzt einen Morphismus
+  $\lambda\colon E_3\to E_2$ mit
+  \begin{gather*}
+    \lambda^* = \iota = (\phi^*)^{-1} \circ \psi^*
+    \qquad\text{bzw.}\qquad
+    \phi^*\circ\lambda^* = \psi^*
+  \end{gather*}
+  also wie gesucht $\lambda\circ\phi = \psi$.
+  Es bleibt zu zeigen, dass $\lambda$ eine Isogenie ist:
+  \begin{gather*}
+    \lambda(O) 
+    \overset{\text{$\phi$ Isog.}}{=} \lambda(\phi(O))
+    = \psi(O) 
+    \overset{\text{$\psi$ Isog.}}{=} O
+  \end{gather*}
+\end{proof}
 \end{Satz}
 
-
-Es wird sich im Folgenden herausstellen, dass man durch bestimmte
-Quotientenbildung auf der Punktegruppe einer Elliptischen Kurve wieder
-die Struktur einer Elliptischen Kurve erhält.
+Zum Schluss werden wir noch sehen, dass bestimmte Quotienten der
+Punktegruppe einer Elliptischen Kurve wieder die Struktur einer
+Elliptischen Kurve haben, wobei der zugehörige
+Projektionshomomorphismus eine (sogar separable) Isogenie ist.
 
 \begin{Satz}
   Sei $E$ eine Elliptische Kurve und $\F\subset E$ eine endliche
