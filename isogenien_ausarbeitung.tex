@@ -31,10 +31,10 @@
 \newtheorem{Proposition}[Satz]{Proposition}
 \newtheorem{Lemma}[Satz]{Lemma}
 \newtheorem{Korollar}[Satz]{Korollar}
-\newtheorem{Beispiel}[Satz]{Beispiel}
 \theoremstyle{definition}
 \newtheorem{Definition}[Satz]{Definition}
 \newtheorem{LemmaDefinition}[Satz]{Lemma/Definition}
+\newtheorem{Beispiel}[Satz]{Beispiel}
 \theoremstyle{remark}
 \newtheorem{Bemerkung}[Satz]{Bemerkung}
 
@@ -178,7 +178,9 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 \end{Bemerkung}
 
 \subsection{Homomorphismengruppen und Torsions-Untergruppen}
-\begin{Beispiel}
+Vorweg eine wichtige Form von Isogenien im Endomorphismenring, die
+häufig bereits den gesamten Ring ausmachen.
+\begin{Beispiel}[Multiplikationsisogenien]
   Nach \autoref{additionmorphismus} ist für eine Elliptische Kurve $E$
   und $m\in\Z$ die \enquote{Multiplikation mit $m$}
   \begin{align*}
@@ -192,6 +194,9 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
   sie hat komplexe Multiplikation.
 \end{Beispiel}
 
+Eine wichtige Eigenschaft der Multiplikationsisogenien ist, dass sie
+nicht konstant sind. Das liefert interessante Aussagen zur Struktur
+der Homomorphismengruppe~und des Endomorphismenrings.
 \begin{Lemma}\label{additionnichtkonstant}
   Für eine Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$
   ist $[m]\colon E\to E$ nicht konstant, d.\,h. $[m]\neq[0]$.
@@ -259,7 +264,7 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 \end{Korollar}
 
 \begin{Definition}[$m$-Torsionsuntergruppe]
-  Für einen Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$ ist die
+  Für einen Elliptische Kurve $E$ und $m\in{\Z\setminus\{0\}}$ ist die
   $m$-Torsionsuntergruppe von $E$
   \begin{gather*}
     E[m] \coloneqq \left\{ P\in E\;\middle|\; [m](P)=O\right\}
@@ -278,6 +283,12 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 
 \section%[Isogenien als Gruppenhomomorphismen]
 {Eigenschaften von Isogenien als Gruppenhomomorphismen}
+In diesem Kapitel werden wir sehen, dass Isogenien nicht nur
+Morphismen von Kurven sondern sogar Gruppenhomomorphismen von
+Punktegruppen sind.
+Diese Eigenschaft liefert eine Verbindung von den 
+rationalen Abbildungen zur Gruppenstruktur auf Elliptischen
+Kurven.
 
 \subsection{Isogenien als Gruppenhomomorphismen}
 \begin{Satz}\label{isogenienhoms}
