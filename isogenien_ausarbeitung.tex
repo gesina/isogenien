@@ -131,9 +131,14 @@ sein erzeugendes Maximalideal
 
 \section{Kategorie der Elliptischen Kurven}
 Wir werden unsere Betrachtung von Morphismen nun auf sogenannte
-Isogenien einschränken und sehen, dass diese Gruppenhomomorphismen
-sind.
+Isogenien einschränken. Diese formen dann mit den Elliptischen Kurven
+über einem algebraische abgeschlossenen Körper $\algK$ eine Kategorie.
+Deren Homomorphismenmengen tragen nicht nur eine von der Punktgruppe
+induzierte Gruppenstruktur, sondern sind selbst torsionsfreie
+$\Z$-Moduln, weshalb wir Torsions-Untergruppen definieren können.
 
+
+\subsection{Isogenien}
 \begin{Definition}[Isogenie]
   Ein Morphismus $\phi\colon E_1\to E_2$ von Elliptischen Kurven wird
   Isogenie genannt, wenn $\phi(O)=O$.
@@ -172,8 +177,7 @@ $F'$ ist eine Isogenie und $F=\tau_{F(O)}\circ F'$ kann über
 eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 \end{Bemerkung}
 
-\section{Torsions-Untergruppen}
-
+\subsection{Homomorphismengruppen und Torsions-Untergruppen}
 \begin{Beispiel}
   Nach \autoref{additionmorphismus} ist für eine Elliptische Kurve $E$
   und $m\in\Z$ die \enquote{Multiplikation mit $m$}
@@ -272,7 +276,10 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 
 % ---
 
-\section{Isogenien als Gruppenhomomorphismen}
+\section%[Isogenien als Gruppenhomomorphismen]
+{Eigenschaften von Isogenien als Gruppenhomomorphismen}
+
+\subsection{Isogenien als Gruppenhomomorphismen}
 \begin{Satz}\label{isogenienhoms}
   Isogenien sind Homomorphismen zwischen den Punktgruppen von
   Elliptischen Kurven, d.\,h. für eine Isogenie $\phi\colon E_1\to
@@ -330,49 +337,30 @@ eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 
 %---
 
-\section{Galois-Theorie elliptischer Funktionenkörper}
+\subsection{Galoistheorie elliptischer Funktionenkörper}
 Aus \autoref{funktionenkoerper} wissen wir bereits, dass Isogenien
 durch eine Kategorienantiäquivalenz als Körpererweiterungen aufgefasst
-werden können und entsprechend für $\phi\colon E_1\to E_2$ der
-Erweiterungsgrad $\deg(\phi)$, der Separabilitätsgrad $\degs(\phi)$
-und der Inseparabilitätsgrad $\degi(\phi)$ definiert wird.
-Im Folgenden sehen wir, inwiefern uns diese Charakterisierung von
-Nutzen sein kann.
+werden können.
+Jetzt werden wir mithilfe dieses Zusammenhangs eine schöne Darstellung
+der Kerne von Isogenien kennen lernen und den Funktionenkörper einer
+Isogenie genauer betrachten.
+Diese Darstellung und die Erkenntnis, wann eine Isogenie einer
+Galoiserweiterung entspricht, werden sehr nützlich sein, um weitere
+Eigenschaften von Isogenien als Homomorphismen zu untersuchen.
 
-\begin{Satz}[Galois Theory elliptischer Funktionenkörper]\label{galois}
+Wir beginnen damit, die Aussagen aus \autoref{sepgrad} zu erweitern.
+\begin{Satz}\label{sepgrad2}
   Sei $\phi\colon E_1\to E_2$ eine nicht-konstante Isogenie.
   \begin{enumerate}[label=\roman*)]
-  \item Für alle $P_2\in E_2$ gilt
+  \item Für alle $Q\in E_2$ gilt
     \begin{gather*}
-      \#\phi^{-1}(P_2) = \degs(\phi)
+      \#\phi^{-1}(Q) = \degs(\phi)
     \end{gather*}
-  \item Für alle $P_1\in E_1$ gilt
+  \item Für alle $Q\in E_1$ gilt
     \begin{gather*}
-      \#e_{\phi}(P_1) = \degi(\phi)
+      \#e_{\phi}(Q) = \degi(\phi)
     \end{gather*}
-  \item Sei für einen Punkt $T\in E_1$ wieder 
-    $\tau_T\colon P\mapsto P+T$ die Translationsabbildung und 
-    $\tau_T^*$ die induzierte Abbildung auf $\algK(E_1)$.
-    Dann ist
-    \begin{align*}
-      \Omega\colon
-      \ker(\phi) 
-      &\longto \Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) \\
-      T 
-      &\longmapsto \left( \tau_T^* \colon f\mapsto f\circ \tau_T \right)
-    \end{align*}
-    ein Gruppenisomorphismus.
-  \item Ist $\phi$ separabel, 
-    so ist $\phi$ unverzweigt,
-    (d.\,h. $e_\phi(P)=1$ für alle $P\in E_2$),
-    $\algK(E_1)$ ist eine Galoiserweiterung von $\phi^*(\algK(E_2))$
-    und
-    \begin{gather*}
-      \#\ker(\phi) = \deg(\phi)
-    \end{gather*}
-
   \end{enumerate}
-
 \begin{proof}~
   \begin{enumerate}[label=\roman*)]
   \item Für diesen Teil müssen wir nur die Aussage aus
@@ -438,8 +426,40 @@ Nutzen sein kann.
         \degs(\phi)\cdot e_\phi(P)
     \end{align*}
     Kürzen liefert die Behauptung.
-    \item 
-      \begin{description}
+  \end{enumerate}  
+\end{proof}
+\end{Satz}
+
+Nun können wir den Kern einer Isogenie durch einen
+Gruppenisomorphismus darstellen.
+\begin{Satz}\label{galois}
+  Sei $\phi\colon E_1\to E_2$ wieder eine nicht-konstante Isogenie.
+  \begin{enumerate}[label=\roman*)]
+  \item Sei für einen Punkt $T\in E_1$ wieder 
+    $\tau_T\colon P\mapsto P+T$ die Translationsabbildung und 
+    $\tau_T^*$ die induzierte Abbildung auf $\algK(E_1)$.
+    Dann ist
+    \begin{align*}
+      \Omega\colon
+      \ker(\phi) 
+      &\longto \Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) \\
+      T 
+      &\longmapsto \left( \tau_T^* \colon f\mapsto f\circ \tau_T \right)
+    \end{align*}
+    ein Gruppenisomorphismus.
+  \item Ist $\phi$ separabel, 
+    so ist $\phi$ unverzweigt,
+    (d.\,h. $e_\phi(P)=1$ für alle $P\in E_2$),
+    $\algK(E_1)$ ist eine Galoiserweiterung von $\phi^*(\algK(E_2))$
+    und
+    \begin{gather*}
+      \#\ker(\phi) = \deg(\phi)
+    \end{gather*}
+\end{enumerate}
+\begin{proof}~
+  \begin{enumerate}[label=\roman*)]
+  \item 
+    \begin{description}
         \item[Wohldefiniertheit] $\tau_T$ ist bereits als Morphismus
           von Kurven ein Automorphismus von $E_1$ und damit ist
           $\tau_T^*$ ein Automorphismus von $\algK(E_1)$. Bleibt zu
@@ -479,11 +499,11 @@ Nutzen sein kann.
             &\eqqcolon \degs(\phi)
           \end{align*}
           Insgesamt gilt mit der Aussage $\degs(\phi)=\#\phi^{-1}(O)$
-          aus \emph{i)}
+          aus \autoref{sepgrad2}\,\emph{i)}
           \begin{gather*}
             \#\Aut_{\algK(E_2)}\left( \algK(E_1) \right) 
             \leq \degs(\phi)
-            \overset{\emph{i)}}{=} \#\phi^{-1}(O)
+            \overset{\autoref{sepgrad2}\emph{i)}}{=} \#\phi^{-1}(O)
             =\#\ker(\phi)
           \end{gather*}
           Nachdem es sich um eine endliche Erweiterung handelt, sind
@@ -510,24 +530,24 @@ Nutzen sein kann.
       $\deg(\phi)=\degs(\phi)$.
       \begin{description}
         \item[Kernmächtigkeit]
-          Mit \emph{i)} gilt
+          Mit \autoref{sepgrad2}\,\emph{i)} gilt
           $
           \#\ker(\phi)
           \coloneqq \#\phi^{-1}(O)
-          \overset{\mathclap{\emph{i)}}}{=} \degs(\phi)
+          \overset{\mathclap{\autoref{sepgrad2}\emph{i)}}}{=} \degs(\phi)
           \overset{{\text{sep.}}}{=} \deg(\phi)
           $.
         \item[Unverzweigtheit] 
           Entsprechend ist
           $\degi(\phi)=\frac{\deg(\phi)}{\degs(\phi)}=1$
-          und mit \emph{ii)} gilt
+          und mit \autoref{sepgrad2}\,\emph{ii)} gilt
           $e_\phi(P)=1$ für alle $P\in E_1$, d.\,h. $\phi$
           ist unverzweigt.
         \item[Galoiserweiterung]
-          Mit \emph{i)} und \emph{iii)} gilt
+          Mit \autoref{sepgrad2}\,\emph{i)} und \autoref{galois}\emph{i)} gilt
           \begin{align*}
             \#\Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) 
-            \overset{\mathclap{\text{\emph{iii)}}}}{=}
+            \overset{\mathclap{\autoref{galois}\emph{i)}}}{=}
               \#\ker(\phi)
             \overset{{\text{s.o.}}}{=} \deg(\phi)
             \coloneqq \left[\algK(C_1):\phi^*(\algK(C_2))\right]
@@ -539,6 +559,7 @@ Nutzen sein kann.
 \end{proof}
 \end{Satz}
 
+\subsection{Homomorphiesatz für Isogenien}
 Mit dem Zusammenhang von Kernen von Isogenien mit
 Automorphismengruppen von Körpererweiterungen sowie der Aussage zu
 galoisschen Isogenien können wir im Folgenden die Eigenschaften von
@@ -621,11 +642,11 @@ Dazu vorerst eine Erinnerung an den Homomorphiesatz.
       & E_3
     \end{tikzcd}
   \end{center}
-  \begin{proof}[Beweis von Satz~\autoref{homomorphiesatz}]
-    \autoref{galois}\,iv) liefert uns, dass
+  \begin{proof}
+    \autoref{galois}\,ii) liefert uns, dass
     $\algK(E_1)/\phi^*(\algK(E_2))$ eine Galoiserweiterung ist mit
   Galoisgruppe $\Aut_{\phi^*(\algK(E_2))}(\algK(E_1))$.
-  Der Isomorphismus aus \autoref{galois}\,iii) zeigt, dass sie aus
+  Der Isomorphismus aus \autoref{galois}\,i) zeigt, dass sie aus
   Elementen der Form $\tau_T^*$ mit $T\in\ker(\phi)$ besteht.
   Da nach Voraussetzung $\ker(\phi)\subset\ker(\psi)$ gilt,
   ist auch
@@ -671,6 +692,8 @@ Dazu vorerst eine Erinnerung an den Homomorphiesatz.
 \end{proof}
 \end{Satz}
 
+
+\subsection{Quotientenbildung auf Elliptischen Kurven}
 Zum Schluss werden wir noch sehen, dass bestimmte Quotienten der
 Punktegruppe einer Elliptischen Kurve wieder die Struktur einer
 Elliptischen Kurve haben, wobei der zugehörige
@@ -692,7 +715,7 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
   \begin{proof}
     Zuerst benötigen wir einen geeigneten Unterkörper von $\algK(E)$
     als Funktionenkörper vom gesuchten $E'$.
-    Wie in \autoref{galois}\,\emph{iii)} erhalten wir zu jedem Punkt
+    Wie in \autoref{galois}\,\emph{i)} erhalten wir zu jedem Punkt
     $T\in \F$ einen Automorphismus $\tau_T^*$ von $\algK(E)$.
     Bezeichne die Untergruppe dieser Automorphismen mit 
     \begin{gather*}
@@ -780,7 +803,7 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
           \deg(\phi)
       \end{gather*}
       und nachdem $E$ unendlich viele Punkte hat (siehe Beweis zu
-      \autoref{galois}\,\emph{i)}), ist $\degs(\phi)=\deg(\phi)$, also
+      \autoref{sepgrad2}\,\emph{i)}), ist $\degs(\phi)=\deg(\phi)$, also
       $\phi$ separabel.
     \end{description}
     
