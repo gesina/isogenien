@@ -42,9 +42,6 @@
   $(f_0(P),\dotsc,f_n(P))\neq0$. % Wohldefiniertheit
   Solch ein $\phi$ heißt definiert über $\K$,
   falls $f_i\in\K(V_1)$. 
-  % Beachte hierbei die Invarianz
-  % bzgl. Multiplikation mit Einheiten $\lambda$, denn
-  % $[f_0,\dotsc,f_n]=[\lambda f_0,\dotsc,\lambda f_n]\in\P^n$.
 
   Eine rationale Abbildung $\phi$ heißt regulär in $P\in V_1$,
   falls es ein $g\in\algK(V)$ gibt, sodass
@@ -122,7 +119,7 @@
   \begin{align*}
     \degs(\phi) 
     &\coloneqq \left[ \K(C_1) : \phi^*(\K(C_2)) \right]_s
-    \coloneqq \#\Hom_K(\K(C_1), \overline{\K(C_2)})\\
+      \coloneqq \#\Hom_K(\K(C_1), \overline{\K(C_2)})\\
     \deg(\phi) &= \degs(\phi)\cdot\degi(\phi)
   \end{align*}
   Wir setzen $\deg\phi\coloneqq 0$ für konstantes $\phi$.
@@ -138,45 +135,45 @@
   ein Morphimus.
   \begin{proof}
     \begin{description}
-      \item[Existenz] Sei \OE{} $C_2\in\P^n$ nicht in der Hyperebene
-        $X_0=0$ enthalten und
-        $g_i\coloneqq\overline{\left(\frac{X_i}{X_0}\right)}\in\K(C_2)$.
-        Dann erfüllt die Abbildung
-        \begin{gather*}
-          \lambda\coloneqq \left[1, \iota(g_1),\dotsc,\iota(g_n)\right]
-        \end{gather*}
-        die gewünschte Eigenschaft, denn auf den Erzeugern $g_i$ gilt
-        \begin{gather*}
-          \iota(g_i) 
-          = \frac{\iota(g_i)}{1} 
-          = \left(\frac{X_i}{X_0}\right)\circ\lambda
-          = g_i\circ\lambda
-          = \lambda^*(g_i)
-        \end{gather*}
-        Sie ist nicht konstant, da die
-        $g_i$ nicht alle konstant sind und $\iota$ injektiv ist, also
-        die $\iota(g_i)$ ebenfalls nicht alle konstant sind. Und sie
-        ist offensichtlich rational sowie über $\K$ definiert.
-      \item[Eindeutigkeit]
-        Sei $\tlambda\coloneqq[f_0,\dotsc,f_n]$ eine weitere
-        Abbildungen mit den gesuchten Eigenschaften.
-        Dann gilt
-        \begin{gather*}
-          \frac{f_i}{f_0}
-          %= \left(\frac{X_i}{X_0}\right)\circ\tlambda 
-          = g_i\circ\tlambda
-          = \tlambda^*(g_i) 
-          \overset{\text{Annahme}}{=}
-          \iota(g_i)
-        \end{gather*}
-        also 
-        \begin{gather*}
-          \tlambda
-          \coloneqq \left[ f_0,f_1,\dotsc,f_n \right]
-          = \left[ 1, \frac{f_1}{f_0}, \dotsc, \frac{f_n}{f_0}\right]
-          = \left[ 1, \iota(g_1), \dotsc, \iota(g_n) \right]
-          \eqqcolon \lambda
-        \end{gather*}
+    \item[Existenz] Sei \OE{} $C_2\in\P^n$ nicht in der Hyperebene
+      $X_0=0$ enthalten und
+      $g_i\coloneqq\overline{\left(\frac{X_i}{X_0}\right)}\in\K(C_2)$.
+      Dann erfüllt die Abbildung
+      \begin{gather*}
+        \lambda\coloneqq \left[1, \iota(g_1),\dotsc,\iota(g_n)\right]
+      \end{gather*}
+      die gewünschte Eigenschaft, denn auf den Erzeugern $g_i$ gilt
+      \begin{gather*}
+        \iota(g_i) 
+        = \frac{\iota(g_i)}{1} 
+        = \left(\frac{X_i}{X_0}\right)\circ\lambda
+        = g_i\circ\lambda
+        = \lambda^*(g_i)
+      \end{gather*}
+      Sie ist nicht konstant, da die
+      $g_i$ nicht alle konstant sind und $\iota$ injektiv ist, also
+      die $\iota(g_i)$ ebenfalls nicht alle konstant sind. Und sie
+      ist offensichtlich rational sowie über $\K$ definiert.
+    \item[Eindeutigkeit]
+      Sei $\tlambda\coloneqq[f_0,\dotsc,f_n]$ eine weitere
+      Abbildungen mit den gesuchten Eigenschaften.
+      Dann gilt
+      \begin{gather*}
+        \frac{f_i}{f_0}
+        % = \left(\frac{X_i}{X_0}\right)\circ\tlambda 
+        = g_i\circ\tlambda
+        = \tlambda^*(g_i) 
+        \overset{\text{Annahme}}{=}
+        \iota(g_i)
+      \end{gather*}
+      also 
+      \begin{gather*}
+        \tlambda
+        \coloneqq \left[ f_0,f_1,\dotsc,f_n \right]
+        = \left[ 1, \frac{f_1}{f_0}, \dotsc, \frac{f_n}{f_0}\right]
+        = \left[ 1, \iota(g_1), \dotsc, \iota(g_n) \right]
+        \eqqcolon \lambda
+      \end{gather*}
     \end{description}
   \end{proof}
 \end{Lemma}
@@ -192,10 +189,9 @@
   \end{align*}
   \cite[siehe][Corollary I.6.11]{hartshorne} und
   \cite[siehe][Remark II.2.5]{silverman}.
-  %% Körpererweiterungszeugs: siehe S.24–25
 \end{Satz}
 
-%---
+% ---
 
 \subsection{Verzweigungsindex}
 \begin{Definition}[Verzweigungsindex]\label{verzweigungsindex}
@@ -214,64 +210,27 @@
   Sei $\phi\colon C_1\to C_2$ wieder eine nicht-konstante Abbildung
   zwischen glatten Kurven. 
   \begin{enumerate}[label=\roman*)]
-    \item Es gilt für alle $Q\in C_2$
-      \begin{gather*}
-        \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P) = \deg\phi
-      \end{gather*}
-      Insbesondere gilt, da $\deg\phi$ endlich ist
-      (s. \ref{funktionenkoerper}) und $e_\phi(P)\geq 1$,
-      dass das Urbild $\phi^{-1}(Q)$ jedes Punkts $Q\in C_2$
-      endlich viele Punkte in $C_1$ enthält.
-    \item Für alle außer endlich viele Punkte $Q\in C_2$ gilt
-      \begin{gather*}
-        \#\phi^{-1}(Q) = \degs(\phi)
-      \end{gather*}
-    \item Der Verzweigungsindex ist multiplikativ
-      in folgendem Sinne
-      \begin{gather*}
-        e_{\psi\circ\phi}(P) = e_\phi(P) \cdot e_\psi(\phi(P))
-      \end{gather*}
-    \end{enumerate}
-    \begin{proof}
-      \cite[siehe][Proposition II.2.6]{silverman}
-      
-      % zu \emph{ii)}: Nach Definition des Separabilitätsgrades gilt
-      % (wir identifizieren $\phi^*(\algK(C_2))$ mit $\algK(C_2)$)
-      % \begin{gather*}
-      %   \degs(\phi) 
-      %   \coloneqq \degs\left( \algK(C_1)/\algK(C_2) \right)
-      %     \coloneqq
-      %   \#\Hom_{\algK(C_2)}\left( \algK(C_1), \overline{\algK(C_2)} \right)
-      % \end{gather*}
-      % Mit unserer Kategorienantiäquivalenz aus
-      % \autoref{kategorienaequivalenz} erhalten wir zur
-      % $\algK$-Erweiterung $\overline{\algK(C_2)}$ eine glatte Kurve
-      % $C_0$ mit einem Morphismus $\lambda\colon C_0\to C_2$, für das
-      % $\lambda^*$ die Erweiterung $\algK(C_2)\to\overline{\algK(C_2)}$
-      % ist (s. \autoref{erweiterungzuratabb}).
-      % $\Hom_{\algK(C_2)}(\algK(C_1), \overline{\algK(C_2)})$
-      % wird zur Menge der Homomorphismen $\psi$, die über $\phi$ wie
-      % folgt faktorisieren:
-      % \begin{center}
-      %   \begin{tikzcd}
-      %     C_0
-      %     \arrow[r, "\psi"{below}]
-      %     \arrow[rr, "\lambda"{below}, bend left=30]
-      %     & C_1
-      %     \arrow[r, "\phi"{below}]
-      %     & C_2
-      %     \\
-      %     \algK(C_0)=\overline{\algK(C_2)}
-      %     \arrow[from=r, "\psi^*"{above}]
-      %     \arrow[from=rr, "\lambda^*"{above}, bend left=30]
-      %     & \algK(C_1)
-      %     \arrow[from=r, "\phi^*"{above}]
-      %     & \algK(C_2)
-      %   \end{tikzcd}
-      % \end{center}
-      % Sei $P\in C_2$. Dann 
-
-    \end{proof}
+  \item Es gilt für alle $Q\in C_2$
+    \begin{gather*}
+      \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P) = \deg\phi
+    \end{gather*}
+    Insbesondere gilt, da $\deg\phi$ endlich ist
+    (s. \ref{funktionenkoerper}) und $e_\phi(P)\geq 1$,
+    dass das Urbild $\phi^{-1}(Q)$ jedes Punkts $Q\in C_2$
+    endlich viele Punkte in $C_1$ enthält.
+  \item Für alle außer endlich viele Punkte $Q\in C_2$ gilt
+    \begin{gather*}
+      \#\phi^{-1}(Q) = \degs(\phi)
+    \end{gather*}
+  \item Der Verzweigungsindex ist multiplikativ
+    in folgendem Sinne
+    \begin{gather*}
+      e_{\psi\circ\phi}(P) = e_\phi(P) \cdot e_\psi(\phi(P))
+    \end{gather*}
+  \end{enumerate}
+  \begin{proof}
+    \cite[siehe][Proposition II.2.6]{silverman}
+  \end{proof}
 
 
 \end{Satz}
@@ -319,15 +278,15 @@
 \end{Definition}
 
 Aus der Algebraischen Geometrie ist bekannt, dass die Punkte einer
-Elliptischen Kurve $E$ mit einer geometrischen Addition eine Gruppe
+elliptischen Kurve $E$ mit einer geometrischen Addition eine Gruppe
 bilden.
 
 \begin{Satz}\label{gruppenaequivalenz}
-  Eine Elliptische Kurve sei als Gruppe ihrer Punkte aufgefasst
+  Eine elliptische Kurve sei als Gruppe ihrer Punkte aufgefasst
   mit der geometrischen Addition.
   \begin{enumerate}[label=\roman*)]
   \item 
-    Für eine Elliptische Kurve $E$ mit neutralem Element $O\in E$ gibt
+    Für eine elliptische Kurve $E$ mit neutralem Element $O\in E$ gibt
     es einen Gruppenisomorphismus
     \begin{align*}
       \sigma\colon \Pic^0(E) &\longto E\\
@@ -355,52 +314,52 @@ bilden.
   \begin{proof}
     Zu \emph{i)} \cite[siehe][Proposition III.3.4]{silverman} und
     zu \emph{ii)} \cite[siehe][Remark II.3.7]{silverman}.
-    \end{proof}
-  \end{Satz}
-  Wir werden die beiden Gruppen im Folgenden immer miteinander
-  identifizieren.
+  \end{proof}
+\end{Satz}
+Wir werden die beiden Gruppen im Folgenden immer miteinander
+identifizieren.
 
 
-  \begin{Satz}\label{additionmorphismus}
-    Subtraktion und Addition (bzw. Translation $\tau_Q$ um $Q\in E$)auf
-    Elliptischen Kurven sind Morphismen von Kurven. Die Abbildungen sind:
-    \begin{align*}
-      \tau_Q\coloneqq\bullet+Q\colon E\times E&\longto E  
-      &&\text{und}  
-      &-\bullet\colon E&\longto E \\
-      P&\longmapsto P+Q             
-      &&&P&\longmapsto -P
-    \end{align*}
-    \begin{proof}
-      \cite[siehe][Theorem III.3.6]{silverman}
-    \end{proof}
-  \end{Satz}
+\begin{Satz}\label{additionmorphismus}
+  Subtraktion und Addition (bzw. Translation $\tau_Q$ um $Q\in E$) auf
+  elliptischen Kurven sind Morphismen von Kurven. Die Abbildungen sind:
+  \begin{align*}
+    \tau_Q\coloneqq\bullet+Q\colon E\times E&\longto E  
+    &&\text{und}  
+    &-\bullet\colon E&\longto E \\
+    P&\longmapsto P+Q             
+    &&&P&\longmapsto -P
+  \end{align*}
+  \begin{proof}
+    \cite[siehe][Theorem III.3.6]{silverman}
+  \end{proof}
+\end{Satz}
 
 
-  Eine weiterer wichtiger Zusammenhang ist die Hurwitz'sche Formel für
-  das Geschlecht von Kurven. Sie eignet sich, um eine glatte Kurve als
-  Elliptische Kurve, d.\,h. glatt und vom Geschlecht $g=1$ mit
-  Basispunkt $O$, zu identifizieren.
+Eine weiterer wichtiger Zusammenhang ist die Hurwitz'sche Formel für
+das Geschlecht von Kurven. Sie eignet sich, um eine glatte Kurve als
+elliptische Kurve, d.\,h. glatt und vom Geschlecht $g=1$ mit
+Basispunkt $O$, zu identifizieren.
 
-  \begin{Satz}[Hurwitz]\label{hurwitz}
-    Für einen separablen Morphismus $\phi\colon C_1\to C_2$ von
-    glatten Kurven 
-    je mit Geschlecht $g_i$ gilt
-    \begin{gather*}
-      2g_1-2
-      \geq
-      \deg(\phi)\cdot(2g_2-2) + \sum_{\mathclap{P\in C_1}}(e_P(\phi)-1)
-    \end{gather*}
-    Über einem Körper $\K$ mit 
-    $\Char(\K)\nmid e_P(\phi)$ für alle $P\in C_1$ 
-    gilt Gleichheit.
-    \begin{proof}
-      \cite[siehe][Theorem II.5.9]{silverman}
-    \end{proof}
-  \end{Satz}
+\begin{Satz}[Hurwitz]\label{hurwitz}
+  Für einen separablen Morphismus $\phi\colon C_1\to C_2$ von
+  glatten Kurven 
+  je mit Geschlecht $g_i$ gilt
+  \begin{gather*}
+    2g_1-2
+    \geq
+    \deg(\phi)\cdot(2g_2-2) + \sum_{\mathclap{P\in C_1}}(e_P(\phi)-1)
+  \end{gather*}
+  Über einem Körper $\K$ mit 
+  $\Char(\K)\nmid e_P(\phi)$ für alle $P\in C_1$ 
+  gilt Gleichheit.
+  \begin{proof}
+    \cite[siehe][Theorem II.5.9]{silverman}
+  \end{proof}
+\end{Satz}
 
 
-  %%% Local Variables:
-  %%% mode: latex
-  %%% TeX-master: "isogenien_ausarbeitung"
-  %%% End:
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "isogenien_ausarbeitung"
+%%% End:

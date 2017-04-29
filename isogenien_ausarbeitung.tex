@@ -1,10 +1,9 @@
 \documentclass[english, german, parskip=half]{scrartcl}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{babel}
+% \usepackage{mathpazo}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\usepackage[shorthands=off]{babel}
 \usepackage{csquotes}
-
-\usepackage{lmodern}
 
 \usepackage[style=alphabetic, backend=biber]{biblatex}
 \bibliography{isogenien_literatur.bib}
@@ -16,10 +15,11 @@
 \usepackage{stmaryrd}
 \usepackage{tikz-cd}
 \usetikzlibrary{babel}
+\hyphenation{wo-raus}
 
 \usepackage{enumitem}
 
-\usepackage{hyperref}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 \hypersetup{
   pdfauthor={Gesina Schwalbe},
   pdftitle={Isogenien Seminarausarbeitung}
@@ -75,40 +75,30 @@
 \maketitle
 \tableofcontents
 
-\section{Vorwort}
+\section{Motivation}
+In vorherigen Vorträgen wurden elliptische Kurven eingeführt, ihre
+Eigenschaften als Varietäten sowie die Eigenschaften als Gruppen
+bezüglich der geometrischen Addition ihrer Punkte.
+Interessanterweise sind diese miteinander kompatibel in dem Sinne,
+dass die Addition selbst eine rationale Abbildung zwischen Varietäten
+ist.
 
-$\K$ sei ab jetzt ein Körper, $\algK$ sein algebraischer Abschluss, 
-$\P^n\coloneqq\P^n(\algK)$ der $n$-dimensionale projektive Raum über $\K$ und
-$\P^n(\K)$ die $\K$-rationalen Punkte von $\P^n$.
-
-Im Folgenden ist mit Kurve immer eine projektive Varietät der
-Dimension 1 gemeint und mit Elliptische Kurve eine glatte Kurve $E$ vom
-Geschlecht $g=1$ zusammen mit einem fixen Punkt $\O\in E$.
-
-Wir sagen, die Kurve $C\subset\P^2(\algK)$ ist über $\K$ definiert,
-falls ihr erzeugendes Ideal $I(C)\subset\algK[X,Y]$ von
-Elementen in $\K[X,Y]$ erzeugt ist, geschrieben $C/\K$. Beachte, dass
-immer $C/\algK$ gilt. 
-
-Für $C/\K$ ist $\K[C]\coloneqq\K[X,Y]/I(C)$ 
-und $\K(C)$ der zugehörige Quotientenkörper, genannt
-der Funktionenkörper von $C$.
-Beachte, dass $I(C)$ prim ist, da $C$ eine Varietät ist.
-
-Wir assoziieren zu jedem Punkt $P\in C\subset\P^n$ einer Kurve $C$
-sein erzeugendes Maximalideal 
-\begin{gather*}
-  M_P\coloneqq\left\{f\in\algK[C]\;\middle\vert\;f(P)=0\right\}
-  \subset \algK[C]
-\end{gather*}
+Diese Ausarbeitung befasst sich aufbauend darauf mit der Frage,
+inwiefern die Gruppenhomomorphismen zwischen den Punktgruppen
+ebenfalls mit den Varietätseigenschaften kompatibel sind.
+Dafür wird nach der Wiederholung mit der Definition sogenannter
+Isogenien, bestimmter Morphismen zwischen elliptischen Kurven,
+begonnen, welche sich als Gruppenhomomorphismen entpuppen werden.
+Diese werden dann weiter untersucht auf die Eigenschaften ihrer Kerne,
+der Anwendbarkeit des Homomorphiesatzes und Quotientenbildung.
 
 \input{isogenien_wdh}
 
-%---
+% ---
 
-\section{Kategorie der Elliptischen Kurven}
+\section{Kategorie der elliptischen Kurven}
 Wir werden unsere Betrachtung von Morphismen nun auf sogenannte
-Isogenien einschränken. Zusammen mit ihnen formen die Elliptischen
+Isogenien einschränken. Zusammen mit ihnen formen die elliptischen
 Kurven über einem algebraisch abgeschlossenen Körper $\algK$ eine
 Unterkategorie der glatten Kurven über $\algK$.
 Deren Homomorphismenmengen tragen nicht nur eine von der Punktgruppe
@@ -118,14 +108,14 @@ $\Z$-Moduln, weshalb wir Torsions-Untergruppen definieren können.
 
 \subsection{Isogenien}
 \begin{Definition}[Isogenie]
-  Ein Morphismus $\phi\colon E_1\to E_2$ von Elliptischen Kurven wird
+  Ein Morphismus $\phi\colon E_1\to E_2$ von elliptischen Kurven wird
   Isogenie genannt, wenn $\phi(\O)=\O$.
   Gibt es solch ein $\phi$, so heißen $E_1$ und $E_2$ isogen.
 \end{Definition}
 
 \begin{Definition}
-  Wir erhalten die Kategorie der Elliptischen Kurven mit Isogenien als
-  Morphismen und entsprechend für $E_1$, $E_2$, $E$ Elliptische Kurven
+  Wir erhalten die Kategorie der elliptischen Kurven mit Isogenien als
+  Morphismen und entsprechend für $E_1$, $E_2$, $E$ elliptische Kurven
   \begin{alignat*}{2}
     \Hom(E_1, E_2)&=\left\{\text{Isogenien }\phi\colon E_1\to E_2 \right\}
     \qquad&&\text{Morphismengruppe}
@@ -142,24 +132,24 @@ $\Z$-Moduln, weshalb wir Torsions-Untergruppen definieren können.
 \end{Definition}
 
 \begin{Bemerkung}
-Wir können jeden Morphismus $\gamma\colon E_1\to E_2$ von Elliptischen
-Kurven, selbst wenn er den $\O$-Punkt nicht erhält, auf eine Isogenie
-zurückführen.
-Denn nach \autoref{additionmorphismus} ist die Translation
-$\tau_{-\gamma(\O)}\colon E_2\to E_2$ um $-\gamma(\O)\in E_2$
-ein Morphismus, also auch 
-\begin{gather*}
-  \widetilde{\gamma}\coloneqq\tau_{-\gamma(\O)}\circ \gamma\colon E_1\to E_2
-\end{gather*}
-$\widetilde{\gamma}$ ist eine Isogenie und $\gamma=\tau_{\gamma(\O)}\circ \widetilde{\gamma}$ kann über
-eine Translation verknüpft mit dieser Isogenie dargestellt werden.
+  Wir können jeden Morphismus $\gamma\colon E_1\to E_2$ von elliptischen
+  Kurven, selbst wenn er den $\O$-Punkt nicht erhält, auf eine Isogenie
+  zurückführen.
+  Denn nach \autoref{additionmorphismus} ist die Translation
+  $\tau_{-\gamma(\O)}\colon E_2\to E_2$ um $-\gamma(\O)\in E_2$
+  ein Morphismus, also auch 
+  \begin{gather*}
+    \widetilde{\gamma}\coloneqq\tau_{-\gamma(\O)}\circ \gamma\colon E_1\to E_2
+  \end{gather*}
+  $\widetilde{\gamma}$ ist eine Isogenie und $\gamma=\tau_{\gamma(\O)}\circ \widetilde{\gamma}$ kann über
+  eine Translation verknüpft mit dieser Isogenie dargestellt werden.
 \end{Bemerkung}
 
 \subsection{Homomorphismengruppen und Torsions-Untergruppen}
 Vorweg als Beispiel eine wichtige Form von Isogenien im
 Endomorphismenring, die häufig bereits den gesamten Ring ausmachen.
 \begin{Beispiel}[Multiplikationsisogenien]
-  Nach \autoref{additionmorphismus} ist für eine Elliptische Kurve $E$
+  Nach \autoref{additionmorphismus} ist für eine elliptische Kurve $E$
   und $m\in\Z$ die \enquote{Multiplikation mit $m$}
   \begin{align*}
     [m]\colon E &\longto E\\
@@ -167,7 +157,7 @@ Endomorphismenring, die häufig bereits den gesamten Ring ausmachen.
        \underbrace{P+P+\dotsb+P}_{m\text{-mal}}
   \end{align*}
   ein Morphismus und wegen $[m](\O)=\O$ auch eine Isogenie.
-  Hat eine Elliptische Kurve über einem Körper von Charakteristik Null
+  Hat eine elliptische Kurve über einem Körper von Charakteristik Null
   mehr Endomorphismen als nur diese Multiplikationen, sagt man,
   sie hat komplexe Multiplikation.
 \end{Beispiel}
@@ -176,31 +166,51 @@ Eine wichtige Eigenschaft der Multiplikationsisogenien ist, dass sie
 nicht konstant sind. Das liefert interessante Aussagen zur Struktur
 der Homomorphismengruppe~und des Endomorphismenrings.
 \begin{Lemma}\label{additionnichtkonstant}
-  Für eine Elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$
+  Für eine elliptische Kurve $E$ und $m\in\Z\setminus\{0\}$
   ist $[m]\colon E\to E$ nicht konstant, d.\,h. $[m]\neq[0]$.
   \begin{proof}[Beweisskizze]
-    \cite[siehe][Proposition 4.2 (a)]{silverman}
+    \cite[siehe][Proposition III.4.2 (a)]{silverman}
     
-    Man zeigt (im Fall $\Char(\algK)\neq2$) mit der Duplikationsformel
-    \cite[Group Law Algorithm III.2.3(d)]{silverman},
-    dass es nur endlich viele Punkte $P\in E$ mit $P+P=\O$ geben kann
-    ($P+P=\O$ ist eine polynomiale Gleichung),
-    was zeigt, dass $[2]$ nicht konstant ist.
-    Für $\Char(\algK)=2$ ergibt sich, dass $E$ singulär ist, falls sie
-    einen Punkt der Ordnung~2 enthält.
+    Für $[2]\neq[0]$ nutzt man, dass nach der Duplikationsformel 
+    \cite[Group Law Algorithm III.2.3(d)]{silverman} ein Punkt $P=(x,y)\in
+    E$ mit $P+P=\O$ eine Gleichung der Form
+    \begin{gather*}
+      4x^3 + b_2x^2 + 2b_4 + b_6 = 0
+    \end{gather*}
+    ($b_i$ Koeffizienten der Weierstrassgleichung von $E$)
+    erfüllen muss.
+    Für $\Char(\algK)\neq 2$ ist dies eine polynomiale Gleichung und hat
+    entsprechend nur endlich viele Lösungen. Nachdem $E$ unendlich
+    viele Punkte hat
+    \cite[siehe][Exercise I.4.8 oder Section I.6]{hartshorne}
+    kann also $[2]$ für $\Char(\algK)\neq 2$ nicht konstant sein.
 
-    Den Fall ungerader $m\in\Z$ und $\Char(\algK)\neq2$ zeigt man mit
-    der Konstruktion eines Punktes $\O\neq P\in E$, für den $P+P=\O$
-    ist. Entsprechend ist dann $[2m+1](P)=[m]\circ[2](P)+P=P\neq \O$.
+    Für $\Char(\algK)=2$ vereinfacht sich obige Gleichung zu
+    \begin{gather*}
+      b_2x^2 + b_6 = 0\,.
+    \end{gather*}
+    Wäre $[2]=[0]$ müsste diese Gleichung für alle Punkte von $E$
+    bzw. alle $x\in\algK$ gelten, woraus $b_2=0=b_6$ folgen müsste.
+    Dies impliziert nach den Formeln für die Diskriminante 
+    \cite{silverman}[Proposition A.1.1],
+    dass diese gleich Null ist und somit $E$ singulär
+    \cite{silverman}[Proposition A.1.2 (a)].
+    D.\,h. $E$ wäre entgegen der Voraussetzung keine elliptische
+    Kurve.
     
-    Alle anderen Fälle ergeben sich wegen 
+    Den Fall ungerader $m\in\Z$ und $\Char(\algK)\neq2$ zeigt man mit
+    der Konstruktion eines nicht trivialen Punktes $\O\neq P\in E$,
+    für den $P+P=\O$ ist. Entsprechend ist dann
+    $[2m+1](P)=[m]\circ[2](P)+P=P\neq \O$.
+    
+    Alle anderen Fälle ergeben sich wegen
     $[m\cdot n]=[m]\circ[n]$ aus dem Fall für $[2]$ und dem für ungerade
     $m\in\Z$.
   \end{proof}
 \end{Lemma}
 
 \begin{Korollar}
-  Seien $E_1$, $E_2$, $E$ Elliptische Kurven. Dann ist $\Hom(E_1,E_2)$
+  Seien $E_1$, $E_2$, $E$ elliptische Kurven. Dann ist $\Hom(E_1,E_2)$
   ein torsionsfreier $\Z$-Modul, d.\,h. für jede Isogenie
   $\phi\in\Hom(E_1,E_2)$ ist $[m]\circ\phi\neq[0]$ für
   $m\in\Z\setminus\{0\}$.
@@ -241,7 +251,7 @@ der Homomorphismengruppe~und des Endomorphismenrings.
 \end{Korollar}
 
 \begin{Definition}[$m$-Torsionsuntergruppe]
-  Für einen Elliptische Kurve $E$ und $m\in{\Z\setminus\{0\}}$ ist die
+  Für einen elliptische Kurve $E$ und $m\in{\Z\setminus\{0\}}$ ist die
   $m$-Torsionsuntergruppe von $E$
   \begin{gather*}
     E[m] \coloneqq \left\{ P\in E\;\middle|\; [m](P)=\O\right\}
@@ -258,73 +268,72 @@ der Homomorphismengruppe~und des Endomorphismenrings.
 
 % ---
 
-\section%[Isogenien als Gruppenhomomorphismen]
-{Eigenschaften von Isogenien als Gruppenhomomorphismen}
+\section{Eigenschaften von Isogenien als Gruppenhomomorphismen}
 In diesem Kapitel werden wir sehen, dass Isogenien nicht nur
 Morphismen von Kurven sondern sogar Gruppenhomomorphismen von
 Punktegruppen sind.
 Diese Eigenschaft liefert eine Verbindung von den 
-rationalen Abbildungen zur Gruppenstruktur auf Elliptischen
+rationalen Abbildungen zur Gruppenstruktur auf elliptischen
 Kurven.
 
 \subsection{Isogenien als Gruppenhomomorphismen}
 \begin{Satz}\label{isogenienhoms}
   Isogenien sind Homomorphismen zwischen den Punktgruppen von
-  Elliptischen Kurven, d.\,h. für eine Isogenie $\phi\colon E_1\to
+  elliptischen Kurven, d.\,h. für eine Isogenie $\phi\colon E_1\to
   E_2$ gilt
   \begin{gather*}
     \phi(P+Q) = \phi(P) + \phi(Q)
     \qquad \text{für alle } P,Q\in E_1
   \end{gather*}
-\begin{proof}
-  Für die konstante Abbildung $\phi\equiv \O$ ist es klar.
-  Ist $\phi$ nicht konstant, machen wir uns die Gruppenisomorphie
-  zwischen der Grad-0-Untergruppe der Picard-Gruppe und der
-  Punktegruppe einer Elliptischen Kurve zunutze
-  (s.\,\autoref{gruppenaequivalenz}).
-  \autoref{gruppenaequivalenz}\,i) liefert die Gruppenisomorphismen 
-  \begin{alignat*}{3}
-    &\kappa_1\colon&
-    E_1&\overset\sim\longto \Pic^0(E_1)
-    &\qquad P &\longmapsto \overline{(P)-(\O)}\\
-    &\kappa_2\colon&
-    E_2&\overset\sim\longto \Pic^0(E_2)
-    &P &\longmapsto \overline{(P)-(\O)}\\
-  \end{alignat*}
-  und \autoref{gruppenaequivalenz}\,ii) den zu $\phi$
-  korrespondierenden Gruppenhomomorphismus auf den Grad-0-Untergruppen
-  der Picard-Gruppen
-  \begin{align*}
-    \phi_*\colon \Pic^0(E_1) 
-    &\longto \Pic^0(E_2)\\
-    \overline{\sum_{\mathclap{P\in E_1}}n_P\cdot(P)}
-    &\longmapsto 
-      \overline{\sum_{\mathclap{P\in E_1}}n_P\cdot(\phi(P))}
-      \qquad .
-  \end{align*}
-  Insgesamt erhalten wir das kommutative Diagramm
-  \begin{center}
-    \begin{tikzcd}
-      E_1 
-      \arrow[r, "{\kappa_1}"{below}, "\sim"{above}]
-      \arrow[d,"\phi"{left}] 
-      & \Pic^0(E_1) 
-      \arrow[d, "\phi_*"{right}]
-      \arrow[dl, phantom, "\circlearrowleft"{description}]
-      \\
-      E_2 
-      \arrow[r, "{\kappa_2}"{below}, "\sim"{above}]
-      & \Pic^0(E_2) 
-    \end{tikzcd}
-  \end{center}
-  welches zeigt, dass $\phi=\kappa_2^{-1}\circ\phi_*\circ\kappa_1$
-  ist, also ein Gruppenhomomorphismus.
-\end{proof}
+  \begin{proof}
+    Für die konstante Abbildung $\phi\equiv \O$ ist es klar.
+    Ist $\phi$ nicht konstant, machen wir uns die Gruppenisomorphie
+    zwischen der Grad-0-Untergruppe der Picard-Gruppe und der
+    Punktegruppe einer elliptischen Kurve zunutze
+    (s.\,\autoref{gruppenaequivalenz}).
+    \autoref{gruppenaequivalenz}\,i) liefert die Gruppenisomorphismen 
+    \begin{alignat*}{3}
+      &\kappa_1\colon&
+      E_1&\overset\sim\longto \Pic^0(E_1)
+      &\qquad P &\longmapsto \overline{(P)-(\O)}\\
+      &\kappa_2\colon&
+      E_2&\overset\sim\longto \Pic^0(E_2)
+      &P &\longmapsto \overline{(P)-(\O)}\\
+    \end{alignat*}
+    und \autoref{gruppenaequivalenz}\,ii) den zu $\phi$
+    korrespondierenden Gruppenhomomorphismus auf den Grad-0-Untergruppen
+    der Picard-Gruppen
+    \begin{align*}
+      \phi_*\colon \Pic^0(E_1) 
+      &\longto \Pic^0(E_2)\\
+      \overline{\sum_{\mathclap{P\in E_1}}n_P\cdot(P)}
+      &\longmapsto 
+        \overline{\sum_{\mathclap{P\in E_1}}n_P\cdot(\phi(P))}
+        \qquad .
+    \end{align*}
+    Insgesamt erhalten wir das kommutative Diagramm
+    \begin{center}
+      \begin{tikzcd}
+        E_1 
+        \arrow[r, "{\kappa_1}"{below}, "\sim"{above}]
+        \arrow[d,"\phi"{left}] 
+        & \Pic^0(E_1) 
+        \arrow[d, "\phi_*"{right}]
+        \arrow[dl, phantom, "\circlearrowleft"{description}]
+        \\
+        E_2 
+        \arrow[r, "{\kappa_2}"{below}, "\sim"{above}]
+        & \Pic^0(E_2) 
+      \end{tikzcd}
+    \end{center}
+    welches zeigt, dass $\phi=\kappa_2^{-1}\circ\phi_*\circ\kappa_1$
+    ist, also ein Gruppenhomomorphismus.
+  \end{proof}
 \end{Satz}
 
-%---
+% ---
 
-\subsection{Galoistheorie elliptischer Funktionenkörper}
+\subsection[Kerne]{Kerne von Isogenien}
 Aus \autoref{kategorienaequivalenz} wissen wir bereits, dass Isogenien
 durch eine Kategorienantiäquivalenz als Körpererweiterungen aufgefasst
 werden können. 
@@ -353,76 +362,76 @@ Verzweigungsindex zu erweitern.
       e_{\phi}(Q) = \degi(\phi)
     \end{gather*}
   \end{enumerate}
-\begin{proof}~
-  \begin{enumerate}[label=\roman*)]
-  \item Für diesen Teil müssen wir nur die Aussage aus
-    \autoref{sepgrad}\,ii) erweitern, die besagt, dass die Behauptung
-    in \emph{i)} von oben für alle außer endlich viele Punkte in $E_2$
-    gilt. Dazu zeigen wir, dass $\#\phi^{-1}(Q)$ für alle Punkte $Q\in
-    E_2$ gleich ist. 
-    Betrachte also $Q,Q'\in E_2$. Nachdem $\phi$ surjektiv ist
-    (siehe \autoref{morphismensurj}), gibt es einen Punkt $R\in E_1$ mit
-    \begin{gather*}
-      \phi(R) = Q' - Q
-    \end{gather*}
-    Nun können wir nutzen, dass $\phi$  nach \autoref{isogenienhoms} als
-    Isogenie ein Gruppenhomomorphismus zwischen den Punktegruppen von
-    $E_1$ und $E_2$ ist. Wir erhalten, dass die Translationen
-    \begin{align*}
-      \phi^{-1}(Q) &\longto \phi^{-1}(Q')
-      &\phi^{-1}(Q) &\longfrom \phi^{-1}(Q')\\
-      P &\longmapsto P+R
-      &P'-R &\longmapsfrom P'
-    \end{align*}
-    wohldefinierte, zueinander inverse Bijektionen zwischen diesen
-    endlichen (siehe \autoref{sepgrad}\,\emph{i)}) Mengen sind.
-    Denn für jedes $P\in\phi^{-1}(Q)$ ist
-    $\phi(P+R)=\phi(P)+\phi(R)=Q'$, d.\,h. $(P+R)\in\phi^{-1}(Q')$,
-    und umgekehrt.
-    Damit braucht es nur einen Punkt $P\in E_2$ geben, für den Aussage
-    \emph{i)} gilt. Das ist wegen \autoref{sepgrad}\,\emph{i)} erfüllt,
-    wenn $E$ unendlich viele Punkte hat.
-    Es hat aber jede Varietät $V/\algK$ positiver Dimension
-    über einem algebraisch abgeschlossenen Körper dieselbe
-    Kardinalität wie $\algK$, also mindestens abzählbar-unendlich
-    \cite[siehe][Exercise I.4.8 oder Section I.6]{hartshorne}.
-    
-  \item Hier benötigen wir für unsere Rechnung die Multiplikativität
-    des Verzweigungsindex aus \autoref{sepgrad}\,iii), um zu zeigen,
-    dass auch alle Punkte in $\phi^{-1}(Q)$ den gleichen
-    Verzweigungsindex bzgl. $\phi$ haben.
-    Betrachte $P,P'\in E_1$ im Urbild $\phi^{-1}(Q)$. Das Bild ihrer
-    Differenz $R\coloneqq P'-P$ ist folglich
-    $\phi(P'-P)=\phi(P')-\phi(P)=\O$, weshalb die Verknüpfung
-    $\phi\circ\tau_R = \phi$ mit der Translation um $R$ wieder $\phi$
-    ist.
-    Dann gilt für die Verzweigungsindizes aufgrund der
-    Multiplikationsregel und mit $e_{\tau_R}\equiv1$ ($\tau_R$ ist
-    Isomorphismus):
-    \begin{gather*}
-      e_\phi(P)
-      = e_{\phi\circ\tau_R}(P)
-      = e_{\tau_R}(P) \cdot e_\phi(\tau_R(P))
-      = e_\phi(\tau_R(P))
-      = e_\phi(P+R)
-      = e_\phi(P')
-    \end{gather*}
-    Nachdem mit dieser Begründung jeder Punkt in $\phi^{-1}(Q)$
-    denselben Verzweigungsindex hat, kann man folgendes Produkt
-    umschreiben:
-    \begin{align*}
-      \degs(\phi) \cdot \degi(\phi)
-      &= \deg(\phi)\\
-      &\overset{\mathllap{\ref{sepgrad}\,i)}}{=}
-        \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P)\\
-      &\overset{\mathllap{\text{für alle Punkte gleich}}}{=}
-        \left( \#\phi^{-1}(Q) \right) \cdot e_\phi(P)\\
-      &\overset{\mathllap{\text{\emph{i)}}}}{=}
-        \degs(\phi)\cdot e_\phi(P)
-    \end{align*}
-    Kürzen liefert die Behauptung \emph{ii)}.
-  \end{enumerate}  
-\end{proof}
+  \begin{proof}~
+    \begin{enumerate}[label=\roman*)]
+    \item Für diesen Teil müssen wir nur die Aussage aus
+      \autoref{sepgrad}\,ii) erweitern, die besagt, dass die Behauptung
+      in \emph{i)} von oben für alle außer endlich viele Punkte in $E_2$
+      gilt. Dazu zeigen wir, dass $\#\phi^{-1}(Q)$ für alle Punkte $Q\in
+      E_2$ gleich ist. 
+      Betrachte also $Q,Q'\in E_2$. Nachdem $\phi$ surjektiv ist
+      (siehe \autoref{morphismensurj}), gibt es einen Punkt $R\in E_1$ mit
+      \begin{gather*}
+        \phi(R) = Q' - Q
+      \end{gather*}
+      Nun können wir nutzen, dass $\phi$  nach \autoref{isogenienhoms} als
+      Isogenie ein Gruppenhomomorphismus zwischen den Punktegruppen von
+      $E_1$ und $E_2$ ist. Wir erhalten, dass die Translationen
+      \begin{align*}
+        \phi^{-1}(Q) &\longto \phi^{-1}(Q')
+        &\phi^{-1}(Q) &\longfrom \phi^{-1}(Q')\\
+        P &\longmapsto P+R
+        &P'-R &\longmapsfrom P'
+      \end{align*}
+      wohldefinierte, zueinander inverse Bijektionen zwischen diesen
+      endlichen (siehe \autoref{sepgrad}\,\emph{i)}) Mengen sind.
+      Denn für jedes $P\in\phi^{-1}(Q)$ ist
+      $\phi(P+R)=\phi(P)+\phi(R)=Q'$, d.\,h. $(P+R)\in\phi^{-1}(Q')$,
+      und umgekehrt.
+      Damit braucht es nur einen Punkt $P\in E_2$ geben, für den Aussage
+      \emph{i)} gilt. Das ist wegen \autoref{sepgrad}\,\emph{i)} erfüllt,
+      wenn $E$ unendlich viele Punkte hat.
+      Es hat aber jede Varietät $V/\algK$ positiver Dimension
+      über einem algebraisch abgeschlossenen Körper dieselbe
+      Kardinalität wie $\algK$, also mindestens abzählbar-unendlich
+      \cite[siehe][Exercise I.4.8 oder Section I.6]{hartshorne}.
+      
+    \item Hier benötigen wir für unsere Rechnung die Multiplikativität
+      des Verzweigungsindex aus \autoref{sepgrad}\,iii), um zu zeigen,
+      dass auch alle Punkte in $\phi^{-1}(Q)$ den gleichen
+      Verzweigungsindex bzgl. $\phi$ haben.
+      Betrachte $P,P'\in E_1$ im Urbild $\phi^{-1}(Q)$. Das Bild ihrer
+      Differenz $R\coloneqq P'-P$ ist folglich
+      $\phi(P'-P)=\phi(P')-\phi(P)=\O$, weshalb die Verknüpfung
+      $\phi\circ\tau_R = \phi$ mit der Translation um $R$ wieder $\phi$
+      ist.
+      Dann gilt für die Verzweigungsindizes aufgrund der
+      Multiplikationsregel und mit $e_{\tau_R}\equiv1$ ($\tau_R$ ist
+      Isomorphismus):
+      \begin{gather*}
+        e_\phi(P)
+        = e_{\phi\circ\tau_R}(P)
+        = e_{\tau_R}(P) \cdot e_\phi(\tau_R(P))
+        = e_\phi(\tau_R(P))
+        = e_\phi(P+R)
+        = e_\phi(P')
+      \end{gather*}
+      Nachdem mit dieser Begründung jeder Punkt in $\phi^{-1}(Q)$
+      denselben Verzweigungsindex hat, kann man folgendes Produkt
+      umschreiben:
+      \begin{align*}
+        \degs(\phi) \cdot \degi(\phi)
+        &= \deg(\phi)\\
+        &\overset{\mathllap{\ref{sepgrad}\,i)}}{=}
+          \sum_{\mathclap{P\in\phi^{-1}(Q)}} e_\phi(P)\\
+        &\overset{\mathllap{\text{für alle Punkte gleich}}}{=}
+          \left( \#\phi^{-1}(Q) \right) \cdot e_\phi(P)\\
+        &\overset{\mathllap{\text{\emph{i)}}}}{=}
+          \degs(\phi)\cdot e_\phi(P)
+      \end{align*}
+      Kürzen liefert die Behauptung \emph{ii)}.
+    \end{enumerate}  
+  \end{proof}
 \end{Lemma}
 
 Nun können wir den Kern einer Isogenie angenehm durch einen
@@ -451,110 +460,111 @@ Gruppenisomorphismus zu Körpererweiterungen darstellen.
     \begin{gather*}
       \#\ker(\phi) = \deg(\phi)
     \end{gather*}
-\end{enumerate}
-\begin{proof}~
-  \begin{enumerate}[label=\roman*)]
-  \item 
-    \begin{description}
-        \item[Wohldefiniertheit] $\tau_T$ ist bereits als Morphismus
-          von Kurven ein Automorphismus von $E_1$ und damit ist
-          $\tau_T^*$ ein Automorphismus von $\algK(E_1)$. Bleibt zu
-          zeigen, dass $\phi^*(\algK(E_2))$ fixiert wird.
-          Sei $T\in\ker(\phi)$, dann ist $\phi\circ\tau_T=\phi$.
-          Für $f\in\algK(E_2)$ erhalten wir
-          \begin{gather*}
-            \tau_T^*(\phi^*(f)) = (\phi\circ\tau_T)^*(f) = \phi^*(f)
-          \end{gather*}
-          Also wird $\phi^*(\algK(E_2))$ fixiert.
-        \item[Homomorphismus] Seien $S,T\in E_1$. Laut Definition ist
-          klar, dass $\tau_S\circ\tau_T = \tau_{S+T}$. Also
-          \begin{align*}
-            \Omega(T+S)(f)
-            &= \tau^*_{T+S}(f)\\
-            &= f\circ\tau_{T+S} 
+  \end{enumerate}
+  \begin{proof}~
+    \begin{enumerate}[label=\roman*)]
+    \item 
+      \begin{description}
+      \item[Wohldefiniertheit] $\tau_T$ ist bereits als Morphismus
+        von Kurven ein Automorphismus von $E_1$ und damit ist
+        $\tau_T^*$ ein Automorphismus von $\algK(E_1)$. Bleibt zu
+        zeigen, dass $\phi^*(\algK(E_2))$ fixiert wird.
+        Sei $T\in\ker(\phi)$, dann ist $\phi\circ\tau_T=\phi$.
+        Für $f\in\algK(E_2)$ erhalten wir
+        \begin{gather*}
+          \tau_T^*(\phi^*(f)) = (\phi\circ\tau_T)^*(f) = \phi^*(f)
+        \end{gather*}
+        Also wird $\phi^*(\algK(E_2))$ fixiert.
+      \item[Homomorphismus] Seien $S,T\in E_1$. Laut Definition ist
+        klar, dass $\tau_S\circ\tau_T = \tau_{S+T}$. Also
+        \begin{align*}
+          \Omega(T+S)(f)
+          &= \tau^*_{T+S}(f)\\
+          &= f\circ\tau_{T+S} 
             = f\circ\tau_{S+T}
             = f\circ\tau_{S}\circ\tau_{T}\\
-            &= \tau^*_T\circ\tau^*_S(f)
+          &= \tau^*_T\circ\tau^*_S(f)
             = \Omega(T)\circ\Omega(S)(f)
-          \end{align*}
-        \item[Surjektivität]
-          Für eine vereinfachte Schreibweise sei
-          $\K_1\coloneqq\algK(E_1)$ und
-          $\K_2\coloneqq{\phi^*(\algK(E_2))}$ der von $\phi$
-          induzierte Unterkörper.
-          Nach Algebra kann jeder $\K_2$-Automorphismus von $\K_1$
-          erweitert werden zu einer $\K_2$-Einbettung von $\K_1$ in den
-          algebraischen Abschluss $\overline{\K_2}$. Also gilt
-          folgende Ungleichung 
-          \begin{align*}
-            \#\Aut_{\K_2}\left( \K_1 \right) 
-            &\leq \#\Hom_{\K_2}\left( \K_1, \overline{\K_2} \right)\\
-            &\eqqcolon
-              \degs\left(\K_1/\K_2\right)\\
-            &\eqqcolon \degs(\phi)
-          \end{align*}
-          Insgesamt gilt mit der Aussage $\degs(\phi)=\#\phi^{-1}(\O)$
-          aus \autoref{sepgrad2}\,\emph{i)}
-          \begin{gather*}
-            \#\Aut_{\K_2}\left( \K_1 \right) 
-            \leq \degs(\phi)
-            \overset{\autoref{sepgrad2}\emph{i)}}{=} \#\phi^{-1}(\O)
-            =\#\ker(\phi)
-          \end{gather*}
-          Nachdem es sich um eine endliche Erweiterung handelt, sind
-          alle Teile der Ungleichung endlich und wir erhalten die
-          Surjektivität von $\Omega$ mit dem Schubladenprinzip.
-        \item[Injektivität] Sei 
-          $\tau_T^* = \Id_{\algK(E_1)} = \tau_\O^*
-          \in\Aut_{\phi^*(\algK(E_2))}( \algK(E_1) )$.
-          Das heißt für alle Funktionen $f\in\algK(E_1)$
-          \begin{gather*}
-            f 
-            = f\circ\tau_\O
-            = \tau_\O^*(f) 
-            = \tau_T^*(f) 
-            = f\circ\tau_T
-          \end{gather*}
-          Aus der Definition der rationalen Abbildungen $\tau_T$ und
-          $\tau_\O$ \cite[siehe][Group Law Algorith III.2.3(c)]{silverman},
-          die stark von den Koordinaten von $T$ und $\O$ abhängen,
-          geht hervor, dass dann bereits die Koordinaten von
-          $T$ und $\O$ übereinstimmen. Damit muss $T=\O$ sein.
-        \end{description}
+        \end{align*}
+      \item[Injektivität] Sei 
+        $\tau_T^* = \Id_{\algK(E_1)} = \tau_\O^*
+        \in\Aut_{\phi^*(\algK(E_2))}( \algK(E_1) )$.
+        Das heißt für alle Funktionen $f\in\algK(E_1)$
+        \begin{gather*}
+          f 
+          = f\circ\tau_\O
+          = \tau_\O^*(f) 
+          = \tau_T^*(f) 
+          = f\circ\tau_T
+        \end{gather*}
+        Aus der Definition der rationalen Abbildungen $\tau_T$ und
+        $\tau_\O$ \cite[siehe][Group Law Algorith III.2.3(c)]{silverman},
+        die stark von den Koordinaten von $T$ und $\O$ abhängen,
+        geht hervor, dass dann bereits die Koordinaten von
+        $T$ und $\O$ übereinstimmen. Damit muss $T=\O$ sein.
+      \item[Surjektivität]
+        Für eine vereinfachte Schreibweise sei
+        $\K_1\coloneqq\algK(E_1)$ und
+        $\K_2\coloneqq{\phi^*(\algK(E_2))}$ der von $\phi$
+        induzierte Unterkörper.
+        Nach Algebra kann jeder $\K_2$-Automorphismus von $\K_1$
+        erweitert werden zu einer $\K_2$-Einbettung von $\K_1$ in den
+        algebraischen Abschluss $\overline{\K_2}$. Also gilt
+        folgende Ungleichung 
+        \begin{align*}
+          \#\Aut_{\K_2}\left( \K_1 \right) 
+          &\leq \#\Hom_{\K_2}\left( \K_1, \overline{\K_2} \right)\\
+          &\eqqcolon
+            \degs\left(\K_1/\K_2\right)\\
+          &\eqqcolon \degs(\phi)
+        \end{align*}
+        Insgesamt gilt mit der Aussage $\degs(\phi)=\#\phi^{-1}(\O)$
+        aus \autoref{sepgrad2}\,\emph{i)}
+        \begin{gather*}
+          \#\Aut_{\K_2}\left( \K_1 \right) 
+          \leq \degs(\phi)
+          \overset{\autoref{sepgrad2}\emph{i)}}{=} \#\phi^{-1}(\O)
+          =\#\ker(\phi)
+        \end{gather*}
+        Nachdem es sich um eine endliche Erweiterung handelt, sind
+        alle Teile der Ungleichung endlich und wir erhalten die
+        Surjektivität von $\Omega$ mit der Injektivität von $\Omega$
+        und dem Schubladenprinzip.
+      \end{description}
     \item Sei $\phi$ separabel. Das heißt per Definition
       $\deg(\phi)=\degs(\phi)$.
       \begin{description}
-        \item[Kernmächtigkeit]
-          Mit \autoref{sepgrad2}\,\emph{i)} gilt
-          $
+      \item[Kernmächtigkeit]
+        Mit \autoref{sepgrad2}\,\emph{i)} gilt
+        $
+        \#\ker(\phi)
+        \coloneqq \#\phi^{-1}(\O)
+        \overset{\mathclap{\autoref{sepgrad2}\emph{i)}}}{=} \degs(\phi)
+        \overset{{\text{sep.}}}{=} \deg(\phi)
+        $.
+      \item[Unverzweigtheit] 
+        Entsprechend ist
+        $\degi(\phi)=\frac{\deg(\phi)}{\degs(\phi)}=1$
+        und mit \autoref{sepgrad2}\,\emph{ii)} gilt
+        $e_\phi(P)=1$ für alle $P\in E_1$, d.\,h. $\phi$
+        ist unverzweigt.
+      \item[Galoiserweiterung]
+        Mit \autoref{sepgrad2}\,\emph{i)} und \autoref{galois}\emph{i)} gilt
+        \begin{align*}
+          \#\Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) 
+          \overset{\mathclap{\autoref{galois}\emph{i)}}}{=}
           \#\ker(\phi)
-          \coloneqq \#\phi^{-1}(\O)
-          \overset{\mathclap{\autoref{sepgrad2}\emph{i)}}}{=} \degs(\phi)
-          \overset{{\text{sep.}}}{=} \deg(\phi)
-          $.
-        \item[Unverzweigtheit] 
-          Entsprechend ist
-          $\degi(\phi)=\frac{\deg(\phi)}{\degs(\phi)}=1$
-          und mit \autoref{sepgrad2}\,\emph{ii)} gilt
-          $e_\phi(P)=1$ für alle $P\in E_1$, d.\,h. $\phi$
-          ist unverzweigt.
-        \item[Galoiserweiterung]
-          Mit \autoref{sepgrad2}\,\emph{i)} und \autoref{galois}\emph{i)} gilt
-          \begin{align*}
-            \#\Aut_{\phi^*(\algK(E_2))}\left( \algK(E_1) \right) 
-            \overset{\mathclap{\autoref{galois}\emph{i)}}}{=}
-              \#\ker(\phi)
-            \overset{{\text{s.o.}}}{=} \deg(\phi)
-            \coloneqq \left[\algK(C_1):\phi^*(\algK(C_2))\right]
-          \end{align*}
-          was äquivalent zu
-          $\algK(C_1)/\phi^*(\algK(C_2))$ galoissch ist.
-        \end{description}
-      \end{enumerate}
-\end{proof}
+          \overset{{\text{s.o.}}}{=} \deg(\phi)
+          \coloneqq \left[\algK(C_1):\phi^*(\algK(C_2))\right]
+        \end{align*}
+        was äquivalent zu
+        $\algK(C_1)/\phi^*(\algK(C_2))$ galoissch ist.
+      \end{description}
+    \end{enumerate}
+  \end{proof}
 \end{Satz}
 
-\subsection{Homomorphiesatz für Isogenien}
+\subsection[Homomorphiesatz]{Homomorphiesatz für Isogenien}
 Mit dem Zusammenhang von Kernen von Isogenien mit
 Automorphismengruppen von Körpererweiterungen sowie der Aussage zu
 galoisschen Isogenien können wir im Folgenden die Eigenschaften von
@@ -583,7 +593,7 @@ Dazu vorerst eine Erinnerung an den Homomorphiesatz.
       \arrow[r, "\bar\alpha"{below}, "\sim"{above}]
       \arrow[dd, "\text{proj}", twoheadrightarrow]
       & \im(\alpha)\subset E_2 
-      \arrow[dd, dashed, twoheadrightarrow, "\exists!\;\bar\lambda"]
+      \arrow[dd, dashed, twoheadrightarrow, "\exists!\;\lambda"]
       \\
       E_1
       \arrow[drr, "\beta"{near start, swap}, bend right=40]
@@ -598,29 +608,31 @@ Dazu vorerst eine Erinnerung an den Homomorphiesatz.
     \hfill
     in kurz
     \hfill
-  \begin{tikzcd}
+    \begin{tikzcd}
       E_1
       \arrow[r, "\alpha"]
       \arrow[dr, "\beta"{swap}]
       & \im(\alpha)
-      \arrow[d, "\exists!\;\bar\lambda"]
+      \arrow[d, "\exists!\;\lambda"]
       \arrow[r, hookrightarrow]
       & E_2\\
       & E_3
     \end{tikzcd}
   \end{center}
-  In bestimmten Fällen lässt sich $\bar\lambda$ auf einen
-  Homomorphismus $\lambda\colon E_2\to E_3$ erweitern.
-  Sind die $E_i$ Punktgruppen zu Elliptischen Kurven 
-  und $\alpha$, $\beta$ Isogenien, ist $\bar\lambda$ erweiterbar, 
-  wenn $\alpha$ separabel ist. Interessanterweise ist $\lambda$ dann
-  ebenfalls eine Isogenie, wie wir jetzt werden.
+  Ist $\alpha$ surjektiv erhält man einen Homomorphismus
+  $\lambda\colon E_2\to E_3$.
 \end{Bemerkung}
+
+Sind die $E_i$ Punktgruppen zu elliptischen Kurven 
+und $\alpha$, $\beta$ nicht konstante Isogenien (d.\,h. insb. surjektiv),
+stellt sich die Frage, in welchen Fällen der resultierende
+Homomorphismus $\lambda\colon E_2\to E_3$ wieder eine Isogenie ist.
 
 \begin{Satz}\label{homomorphiesatz}
   Sei $\phi\colon E_1\to E_2$ eine separable Isogenie.
   Jede weitere Isogenie $\psi\colon E_1\to E_3$ mit
   \begin{gather*}
+    \SwapAboveDisplaySkip
     \ker\phi \subset \ker\psi
   \end{gather*}
   faktorisiert eindeutig über $\psi$, d.\,h. es gibt eine eindeutige
@@ -640,66 +652,66 @@ Dazu vorerst eine Erinnerung an den Homomorphiesatz.
   \begin{proof}
     \autoref{galois}\,ii) liefert uns, dass
     $\algK(E_1)/\phi^*(\algK(E_2))$ eine Galoiserweiterung ist mit
-  Galoisgruppe $\Aut_{\phi^*(\algK(E_2))}(\algK(E_1))$.
-  Der Isomorphismus aus \autoref{galois}\,i) zeigt, dass sie aus
-  Elementen der Form $\tau_T^*$ mit $T\in\ker(\phi)$ besteht.
-  Da nach Voraussetzung $\ker(\phi)\subset\ker(\psi)$ gilt,
-  ist auch
-  \begin{align*}
-    \Aut_{\phi^*(\algK(E_2))}(\algK(E_1))
-    &= \left\{ \tau_T^* \;\middle|\; T\in\ker(\phi) \right\} \\
-    &\subset
-      \left\{ \tau_T^* \;\middle|\; T\in\ker(\psi) \right\}
-      = \Aut_{\psi^*(\algK(E_3))}(\algK(E_1))
-  \end{align*}
-  D.\,h. die Galoisgruppe fixiert den Unterkörper
-  $\psi^*(\algK(E_3))$, weshalb er nach Galoistheorie ein
-  Unterkörper von $\phi^*(\algK(E_2))$ sein muss.
-  Wir erhalten folgende Kette von Körpererweiterungen
-  \begin{gather*}
-    \psi^*(\algK(E_3)) 
-    \subset \phi^*(\algK(E_2)) 
-    \subset \algK(E_1)
-  \end{gather*}
-  Da $\phi^*$ injektiv und 
-  $\phi^*\colon\algK(E_2)\to\phi^*(\algK(E_2))$ ein
-  Körperisomorphismus ist, erhalten wir eine Körpererweiterung
-  \begin{gather*}
-    \iota\coloneqq 
-    (\phi^*)^{-1} \circ \psi^*
-    \colon \algK(E_3) \longto \algK(E_2)
-  \end{gather*}
-  Die Kategorienantiäquivalenz bzw. \autoref{erweiterungzuratabb}
-  liefert jetzt einen Morphismus $\lambda\colon E_3\to E_2$ glatter
-  Kurven mit
-  \begin{gather*}
-    \lambda^* = \iota = (\phi^*)^{-1} \circ \psi^*
-    \qquad\text{bzw.}\qquad
-    \phi^*\circ\lambda^* = \psi^*
-  \end{gather*}
-  also wie gesucht $\lambda\circ\phi = \psi$.
-  Es bleibt zu zeigen, dass $\lambda$ eine Isogenie ist:
-  \begin{gather*}
-    \lambda(\O) 
-    \overset{\text{$\phi$ Isog.}}{=} \lambda(\phi(\O))
-    = \psi(\O) 
-    \overset{\text{$\psi$ Isog.}}{=} \O
-  \end{gather*}
-\end{proof}
+    Galoisgruppe $\Aut_{\phi^*(\algK(E_2))}(\algK(E_1))$.
+    Der Isomorphismus aus \autoref{galois}\,i) zeigt, dass sie aus
+    Elementen der Form $\tau_T^*$ mit $T\in\ker(\phi)$ besteht.
+    Da nach Voraussetzung $\ker(\phi)\subset\ker(\psi)$ gilt,
+    ist auch
+    \begin{align*}
+      \Aut_{\phi^*(\algK(E_2))}(\algK(E_1))
+      &= \left\{ \tau_T^* \;\middle|\; T\in\ker(\phi) \right\} \\
+      &\subset
+        \left\{ \tau_T^* \;\middle|\; T\in\ker(\psi) \right\}
+        = \Aut_{\psi^*(\algK(E_3))}(\algK(E_1))
+    \end{align*}
+    D.\,h. die Galoisgruppe fixiert den Unterkörper
+    $\psi^*(\algK(E_3))$, weshalb er nach Galoistheorie ein
+    Unterkörper von $\phi^*(\algK(E_2))$ sein muss.
+    Wir erhalten folgende Kette von Körpererweiterungen
+    \begin{gather*}
+      \psi^*(\algK(E_3)) 
+      \subset \phi^*(\algK(E_2)) 
+      \subset \algK(E_1)
+    \end{gather*}
+    Da $\phi^*$ injektiv und 
+    $\phi^*\colon\algK(E_2)\to\phi^*(\algK(E_2))$ ein
+    Körperisomorphismus ist, erhalten wir eine Körpererweiterung
+    \begin{gather*}
+      \iota\coloneqq 
+      (\phi^*)^{-1} \circ \psi^*
+      \colon \algK(E_3) \longto \algK(E_2)
+    \end{gather*}
+    Die Kategorienantiäquivalenz bzw. \autoref{erweiterungzuratabb}
+    liefert jetzt einen Morphismus $\lambda\colon E_3\to E_2$ glatter
+    Kurven mit
+    \begin{gather*}
+      \lambda^* = \iota = (\phi^*)^{-1} \circ \psi^*
+      \qquad\text{bzw.}\qquad
+      \phi^*\circ\lambda^* = \psi^*
+    \end{gather*}
+    also wie gesucht $\lambda\circ\phi = \psi$.
+    Es bleibt zu zeigen, dass $\lambda$ eine Isogenie ist:
+    \begin{gather*}
+      \lambda(\O) 
+      \overset{\text{$\phi$ Isog.}}{=} \lambda(\phi(\O))
+      = \psi(\O) 
+      \overset{\text{$\psi$ Isog.}}{=} \O
+    \end{gather*}
+  \end{proof}
 \end{Satz}
 
 
-\subsection{Quotientenbildung auf Elliptischen Kurven}
+\subsection[Quotientenbildung]{Quotientenbildung auf elliptischen Kurven}
 Zum Schluss werden wir noch sehen, dass bestimmte Quotienten der
-Punktegruppe einer Elliptischen Kurve wieder die Struktur einer
-Elliptischen Kurve haben, wobei der zugehörige
+Punktegruppe einer elliptischen Kurve wieder die Struktur einer
+elliptischen Kurve haben, wobei der zugehörige
 Projektionshomomorphismus eine (sogar separable) Isogenie ist.
 
 \begin{Satz}
-  Sei $E$ eine Elliptische Kurve und $\F\subset E$ eine endliche
+  Sei $E$ eine elliptische Kurve und $\F\subset E$ eine endliche
   Untergruppe.
-  Dann gibt es eine eindeutige Elliptische Kurve $E'$ und eine
-  separable Isogenie $\phi\colon E\to E'$, so dass
+  Dann gibt es eine eindeutige elliptische Kurve $E'$ und eine
+  separable, unverzweigte Isogenie $\phi\colon E\to E'$, so dass
   \begin{gather*}
     \ker\phi = \F \;.
   \end{gather*}
@@ -719,29 +731,22 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
       \cong F
     \end{gather*}
     und betrachte den Fixkörper $\algK(E)^\Phi$.    
-    $\algK(E)/\algK(E)^\Phi$ ist eine Galoiserweiterung mit
-    Galoisgruppe $\Phi$ und wir erhalten dank der Kategorienantiäquivalenz
-    aus \autoref{kategorienaequivalenz} eine eindeutige glatte Kurve
-    $C/\algK$ zu $\algK(E)^\Phi$ und einen endlichen Morphismus
-    $\phi\colon E\to C$ zur Erweiterung $\algK(E)^\Phi\to\algK(E)$
-    mit $\phi^*(\algK(C))=\algK(E)^\Phi$.
+    $\algK(E)/\algK(E)^\Phi$ ist eine Galoiserweiterung
+    (insb. separabel) mit Galoisgruppe $\Phi$ und wir erhalten dank
+    der Kategorienantiäquivalenz aus \autoref{kategorienaequivalenz}
+    eine eindeutige glatte Kurve $C/\algK$ zu $\algK(E)^\Phi$ und
+    einen endlichen, separablen Morphismus $\phi\colon E\to C$ zur
+    Erweiterung $\algK(E)^\Phi\to\algK(E)$ mit
+    $\phi^*(\algK(C))=\algK(E)^\Phi$.
     
-    Es bleibt zu zeigen, dass $\phi$ separabel ist, und, dass $C$ eine
-    Elliptische Kurve ist, d.\,h. Geschlecht $g_C=1$ hat.
+    Es bleibt zu zeigen, dass $\phi$ unverzweigt ist, und, dass $C$
+    eine elliptische Kurve ist, d.\,h. Geschlecht $g_C=1$ hat.
     Letzteres können wir mithilfe der Hurwitz'schen Formel
     \autoref{hurwitz} zeigen.
 
     \begin{description}
     \item[$\phi$ unverzweigt]
-      Wir werden zeigen, dass $\phi$ unverzweigt ist. Dies impliziert
-      bereits separabel, wie wir sehen werden.
-
       Es gilt wegen $e_\phi(P)\geq1$ für alle $Q\in E$ die Ungleichung
-      % Für Unverzweigtheit muss gelten, dass $e_\phi(P)=1$ für alle
-      % $P\in C$, was mit \autoref{sepgrad}\,\emph{i)}, $e_\phi(P)\geq1$
-      % und $\#\Phi=\deg(\phi)$ (nach Galoistheorie) äquivalent zu
-      % folgender Aussage ist:
-      % Für alle $Q\in E$ gilt
       \begin{gather*}
         \#\phi^{-1}(Q)
         \leq
@@ -756,10 +761,6 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
       $P\in C$, also wenn $\phi$ unverzweigt ist.
       Es ist also zu zeigen, dass $\#\phi^{-1}(Q)\geq\#\Phi=\# \F$ für alle 
       $Q\in E$.
-      % Nachdem wegen \autoref{sepgrad}\,\emph{i)} und $e_\phi(P)\geq1$
-      % gilt, dass $\#\phi^{-1}(Q)\leq\deg(\phi)$ ist,
-      % bleibt zu zeigen, dass $\#\phi^{-1}(Q)\geq\#\Phi$ für alle 
-      % $Q\in E$ gilt.
 
       Sei $T\in\F$, dann ist $\tau_T^*\in\Phi$ die Identität auf
       $\phi^*(\algK(C))=\algK(E)^\Phi$. Daraus folgt
@@ -767,7 +768,7 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
         f(\phi(P+T))
         = f(\phi\circ\tau_T(P)) 
         = \left( \tau_T^*(\phi^*(f)) \right)(P)
-        %= (\tau_T^*(\underset{\mathrlap{\in\phi^*(\algK(C))}}{\phi^*(f)}))(P)
+        % = (\tau_T^*(\underset{\mathrlap{\in\phi^*(\algK(C))}}{\phi^*(f)}))(P)
         = \phi^*(f)(P)
         = f(\phi(P))
       \end{gather*}
@@ -788,25 +789,11 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
       \end{gather*}
       Damit ist $\deg(\phi)=\phi^{-1}(Q)$ für alle $Q\in E$ und
       $\phi$ ist unverzweigt.
-
-    \item[$\phi$ separabel]
-      Es gilt für alle außer endlich viele $Q\in E$ nach
-      \autoref{sepgrad}\,\emph{ii)}
-      \begin{gather*}
-        \degs(\phi) 
-        \overset{\text{\autoref{sepgrad}\emph{ii)}}}{=}
-        \#\phi^{-1}(Q) 
-        \overset{\text{unverzw.}}{=} 
-          \deg(\phi)
-      \end{gather*}
-      und nachdem $E$ unendlich viele Punkte hat (siehe Beweis zu
-      \autoref{sepgrad2}\,\emph{i)}), ist $\degs(\phi)=\deg(\phi)$, also
-      $\phi$ separabel.
-  
-    \item[$C$ Elliptische Kurve]
+      
+    \item[$C$ elliptische Kurve]
       Nachdem $\phi\colon E\to C$ ein separabler Morphismus glatter
       Kurven ist, kann die Hurwitz'sche Formel \autoref{hurwitz}
-      angewendet werden ($g_E=1$, da $E$ Elliptische Kurve, $g_C$ ist das
+      angewendet werden ($g_E=1$, da $E$ elliptische Kurve, $g_C$ ist das
       gesuchte Geschlecht von $C$):
       \begin{align*}
         0
@@ -817,7 +804,7 @@ Projektionshomomorphismus eine (sogar separable) Isogenie ist.
           \geq 0\\
       \end{align*}
       Also ist das Geschlecht von $C$ gleich $g_C=1$ und $C$ mit
-      neutralem Element $\O\in E$ ist Elliptische Kurve.
+      neutralem Element $\O\in E$ ist elliptische Kurve.
     \end{description}
   \end{proof}
 
